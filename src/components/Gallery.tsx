@@ -2,6 +2,7 @@ import React from "react";
 import { GalleryHorizontal } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 
 const galleryImages = [
   {
@@ -69,20 +70,13 @@ const Gallery = () => {
             >
               <Card>
                 <AspectRatio ratio={4 / 3} className="bg-muted">
-                  <img
+                  <Image
                     src={`${image.src}?auto=format&fit=crop&q=80&w=800`}
-                    srcSet={`
-                      ${image.src}?auto=format&fit=crop&q=80&w=400 400w,
-                      ${image.src}?auto=format&fit=crop&q=80&w=600 600w,
-                      ${image.src}?auto=format&fit=crop&q=80&w=800 800w,
-                      ${image.src}?auto=format&fit=crop&q=80&w=1200 1200w
-                    `}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                     width={image.width}
                     height={image.height}
                     alt={image.alt}
                     loading="lazy"
-                    decoding="async"
                     className="object-cover w-full h-full"
                   />
                 </AspectRatio>

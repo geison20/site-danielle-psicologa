@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageSquare, ArrowRight, Clock, Phone, Send } from "lucide-react";
+import Image from "next/image";
 
 const CTASection = () => {
   const isMobile = false;
@@ -20,10 +21,13 @@ const CTASection = () => {
             {/* Left Column - Image */}
             <div className="relative h-64 md:h-full md:col-span-2">
               <div className="absolute inset-0">
-                <img
+                <Image
                   src="https://source.unsplash.com/photo-1601934025804-0976749c550f"
                   alt="Psicóloga atendendo paciente"
+                  fill
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  priority={false}
                 />
                 <div className="absolute inset-0 bg-green-dark/30"></div>
               </div>
