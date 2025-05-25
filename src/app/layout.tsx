@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
     googleBot: "index, follow",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+  // viewport: {
+  //   width: "device-width",
+  //   initialScale: 1,
+  // },
   // charset: "utf-8",
   openGraph: {
     siteName: "Psicóloga Danielle Robertis",
