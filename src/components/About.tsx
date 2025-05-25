@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Award, BookOpen } from "lucide-react";
+import { Star, Award } from "lucide-react";
 import Image from "next/image";
 
 const About = () => {
@@ -76,13 +76,6 @@ const About = () => {
           </div>
 
           <div className="order-1 md:order-2 space-y-6 animate-fade-in">
-            <div
-              className="bg-green/5 p-3 rounded-lg inline-block mb-2"
-              aria-hidden="true"
-            >
-              <BookOpen className="w-6 h-6 text-green" />
-            </div>
-
             <h3 className="heading-md mb-4">Olá, sou a Danielle!</h3>
             <p className="mb-5 text-gray-700">
               Sou psicóloga formada pela Universidade de São Paulo (USP), com

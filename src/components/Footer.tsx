@@ -121,11 +121,6 @@ const Footer = () => {
                   icon={Linkedin}
                   label="Conecte-se comigo no LinkedIn"
                 />
-                <SocialLink
-                  href="https://twitter.com"
-                  icon={Twitter}
-                  label="Siga-me no Twitter"
-                />
               </div>
             </Card>
           </div>
@@ -145,7 +140,6 @@ const Footer = () => {
                   <FooterLink href="#servicos">Serviços</FooterLink>
                   <FooterLink href="#depoimentos">Depoimentos</FooterLink>
                   <FooterLink href="#location">Localização</FooterLink>
-                  <FooterLink href="#contato">Contato</FooterLink>
                 </ul>
               </nav>
             </Card>
@@ -191,10 +185,6 @@ const Footer = () => {
             &copy; {currentYear} Psicóloga Danielle Robertis | Psicóloga em São
             Paulo, especialista em Terapia Cognitivo-Comportamental (TCC),
             atendimento presencial e online. Todos os direitos reservados.
-          </p>
-          <p className="mt-2 text-xs text-gray-500">
-            Desenvolvido com <span aria-label="amor">💚</span> para
-            profissionais da saúde mental
           </p>
         </div>
       </div>

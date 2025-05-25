@@ -142,7 +142,7 @@ const Services = () => {
                   <span className="bg-green/10 p-1.5 rounded-full mt-0.5">
                     <Check className="h-4 w-4 text-green" />
                   </span>
-                  <span className="text-gray-700">{item}</span>
+                  <span className="text-gray-700 text-left">{item}</span>
                 </li>
               ))}
             </ul>
