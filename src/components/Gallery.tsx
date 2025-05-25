@@ -95,13 +95,6 @@ const Gallery = () => {
             </figure>
           ))}
         </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-muted-foreground italic">
-            As imagens são meramente ilustrativas. Visite nosso consultório e
-            conheça pessoalmente!
-          </p>
-        </div>
       </div>
     </section>
   );

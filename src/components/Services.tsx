@@ -14,6 +14,7 @@ import {
   ListCheck,
   ShieldCheck,
 } from "lucide-react";
+import Image from "next/image";
 
 const Services = () => {
   const isMobile = false;
@@ -77,7 +78,7 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
-            <div key={index} className="h-full">
+            <article key={index} className="h-full" aria-label={service.title}>
               <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green/10 bg-white/80 backdrop-blur">
                 <CardHeader className="pb-2">
                   <div className="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center mb-4">
@@ -107,52 +108,44 @@ const Services = () => {
                   </p>
                 </CardContent>
               </Card>
-            </div>
+            </article>
           ))}
         </div>
 
         <div className="mt-20 bg-white rounded-xl p-8 md:p-10 shadow-md border border-green/10 transform hover:shadow-lg transition-all duration-300">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <div className="inline-flex items-center gap-2 bg-green/10 px-3 py-1.5 rounded-full text-green-dark text-sm font-medium mb-4">
-                <Laptop className="w-4 h-4" />
-                <span>Flexível e Conveniente</span>
-              </div>
-
-              <h3 className="heading-md mb-5 text-green-dark">
-                Atendimento Online
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Ofereço terapia online através de plataforma segura e
-                confidencial. É uma opção conveniente e eficaz, especialmente
-                para quem tem agenda corrida, viaja com frequência ou prefere o
-                conforto de sua casa.
-              </p>
-
-              <ul className="space-y-3">
-                {[
-                  "Mesma qualidade do atendimento presencial",
-                  "Flexibilidade de horários",
-                  "Economia de tempo e deslocamento",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="bg-green/10 p-1.5 rounded-full mt-0.5">
-                      <Check className="h-4 w-4 text-green" />
-                    </span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="inline-flex items-center gap-2 bg-green/10 px-3 py-1.5 rounded-full text-green-dark text-sm font-medium mb-4">
+              <Laptop className="w-4 h-4" />
+              <span>Flexível e Conveniente</span>
             </div>
 
-            <div className="relative order-1 md:order-2">
-              <div className="absolute -top-3 -left-3 w-full h-full bg-cream-light/50 rounded-lg transform -rotate-3"></div>
-              <img
-                src="https://source.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-                alt="Atendimento online"
-                className="rounded-lg h-full w-full object-cover shadow-md relative z-10"
-              />
-            </div>
+            <h3 className="heading-md mb-5 text-green-dark">
+              Atendimento Online
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Ofereço terapia online através de plataforma segura e
+              confidencial. É uma opção conveniente e eficaz, especialmente para
+              quem tem agenda corrida, viaja com frequência ou prefere o
+              conforto de sua casa.
+            </p>
+
+            <h4 className="text-green-dark font-semibold mb-2">
+              Benefícios do Atendimento Online
+            </h4>
+            <ul className="space-y-3 max-w-lg mx-auto">
+              {[
+                "Mesma qualidade do atendimento presencial",
+                "Flexibilidade de horários",
+                "Economia de tempo e deslocamento",
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="bg-green/10 p-1.5 rounded-full mt-0.5">
+                    <Check className="h-4 w-4 text-green" />
+                  </span>
+                  <span className="text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

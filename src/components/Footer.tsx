@@ -26,9 +26,10 @@ const Footer = () => {
     <a
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer nofollow"
       className="bg-cream-light/20 p-3 rounded-full hover:bg-cream-light/40 hover:scale-110 transition-all duration-300"
       aria-label={label}
+      title={label}
     >
       <Icon className="h-5 w-5 text-green" />
     </a>
@@ -187,8 +188,9 @@ const Footer = () => {
 
         <div className="text-center text-gray-400 text-sm">
           <p>
-            &copy; {currentYear} Psicóloga Danielle Robertis. Todos os direitos
-            reservados.
+            &copy; {currentYear} Psicóloga Danielle Robertis | Psicóloga em São
+            Paulo, especialista em Terapia Cognitivo-Comportamental (TCC),
+            atendimento presencial e online. Todos os direitos reservados.
           </p>
           <p className="mt-2 text-xs text-gray-500">
             Desenvolvido com <span aria-label="amor">💚</span> para

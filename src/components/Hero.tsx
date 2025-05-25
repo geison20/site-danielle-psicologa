@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   const isMobile = false;
@@ -25,7 +27,7 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6 md:space-y-8 animate-fade-in order-2 md:order-1">
             <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium">
-              Psicóloga | CRP 06/111222
+              Psicóloga | CRP XX/XXXXX
             </span>
 
             <h1
@@ -50,8 +52,9 @@ const Hero = () => {
                 <a
                   href="https://wa.me/5511964556323"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   aria-label="Agendar consulta pelo WhatsApp"
+                  title="Agende sua consulta pelo WhatsApp"
                   className="flex items-center gap-2 px-8"
                 >
                   <MessageSquare className="w-5 h-5" />
@@ -65,38 +68,44 @@ const Hero = () => {
                 size="lg"
                 className="border-green text-green hover:text-green-dark"
               >
-                <a
+                <Link
                   href="#servicos"
                   aria-label="Ver serviços disponíveis"
+                  title="Conheça meus serviços"
                   className="flex items-center gap-2"
                 >
                   Conheça meus serviços
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
 
-          <div className="relative flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] bg-green/10 rounded-full"
-              aria-hidden="true"
-            ></div>
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[260px] md:h-[260px] lg:w-[340px] lg:h-[340px] bg-green/20 rounded-full"
-              aria-hidden="true"
-            ></div>
+          {!isMobile && (
+            <div className="relative flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] bg-green/10 rounded-full"
+                aria-hidden="true"
+              ></div>
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[260px] md:h-[260px] lg:w-[340px] lg:h-[340px] bg-green/20 rounded-full"
+                aria-hidden="true"
+              ></div>
 
-            <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
-              <img
-                src="https://source.unsplash.com/photo-1721322800607-8c38375eef04"
-                alt="Ambiente acolhedor do consultório de psicologia com decoração em tons neutros, cadeiras confortáveis e iluminação suave"
-                className="w-full h-full object-cover"
-              />
-              <figcaption className="sr-only">
-                Ambiente acolhedor do consultório de psicologia
-              </figcaption>
-            </figure>
-          </div>
+              <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
+                <Image
+                  src="/danielle-robertis-psicologa.jpeg"
+                  alt="Ambiente acolhedor do consultório de psicologia com decoração em tons neutros, cadeiras confortáveis e iluminação suave"
+                  fill
+                  sizes="(max-width: 380px) 100vw, 380px"
+                  className="object-cover"
+                  priority
+                />
+                <figcaption className="sr-only">
+                  Ambiente acolhedor do consultório de psicologia
+                </figcaption>
+              </figure>
+            </div>
+          )}
         </div>
       </div>
 
@@ -108,6 +117,7 @@ const Hero = () => {
           <a
             href="#sobre"
             aria-label="Rolar para a seção Sobre"
+            title="Rolar para a seção Sobre"
             className="inline-flex items-center justify-center p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all group"
           >
             <svg

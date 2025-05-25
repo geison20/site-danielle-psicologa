@@ -134,20 +134,21 @@ const InfiniteTestimonialCarousel = () => {
     const doubledTestimonials = [...testimonials, ...testimonials];
 
     return doubledTestimonials.map((testimonial, index) => (
-      <div
+      <article
         key={`${testimonial.id}-${index}`}
         className="inline-block w-[380px] bg-gray-800 rounded-lg p-6 text-white shadow-lg"
         style={{
-          willChange: "transform", // Otimização para navegadores modernos
-          translate: "none", // Força GPU rendering
+          willChange: "transform",
+          translate: "none",
         }}
+        aria-label={`Depoimento de ${testimonial.name}`}
       >
         <div className="flex items-center gap-4 mb-3">
           <Avatar className="h-12 w-12 border-2 border-purple">
             {testimonial.avatar ? (
               <AvatarImage
                 src={testimonial.avatar}
-                alt={testimonial.name}
+                alt={`Foto de ${testimonial.name}`}
                 width={48}
                 height={48}
                 loading="lazy"
@@ -161,13 +162,7 @@ const InfiniteTestimonialCarousel = () => {
               </AvatarFallback>
             )}
           </Avatar>
-          <div>
-            <h3 className="text-xl text-blue-400 font-semibold">
-              {testimonial.name}
-            </h3>
-          </div>
         </div>
-
         <div className="flex mb-4">
           {[...Array(5)].map((_, i) => (
             <svg
@@ -179,11 +174,17 @@ const InfiniteTestimonialCarousel = () => {
               <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
             </svg>
           ))}
-          <span className="ml-3 text-gray-300">{testimonial.date}</span>
         </div>
-
-        <p className="text-gray-200 whitespace-normal">"{testimonial.text}"</p>
-      </div>
+        <blockquote className="text-gray-200 whitespace-normal mb-4">
+          “{testimonial.text}”
+        </blockquote>
+        <footer className="flex flex-col">
+          <cite className="not-italic text-blue-400 font-semibold text-lg">
+            {testimonial.name}
+          </cite>
+          <span className="text-gray-300 text-sm">{testimonial.date}</span>
+        </footer>
+      </article>
     ));
   }, []);
 
@@ -198,6 +199,7 @@ const InfiniteTestimonialCarousel = () => {
       <div
         ref={carouselRef}
         className="overflow-hidden whitespace-nowrap"
+        aria-label="Carrossel de depoimentos de clientes"
         style={{
           scrollBehavior: "auto", // Auto em vez de smooth para melhor performance
           overscrollBehavior: "none", // Prevenir scroll indesejado

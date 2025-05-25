@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Award, BookOpen } from "lucide-react";
+import Image from "next/image";
 
 const About = () => {
   const isMobile = false;
@@ -50,29 +51,27 @@ const About = () => {
               aria-hidden="true"
             ></div>
 
-            <img
-              src="https://source.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
-              srcSet="
-                https://source.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=400 400w,
-                https://source.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600 600w,
-                https://source.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800 800w,
-                https://source.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200 1200w
-              "
-              sizes="(max-width: 768px) 100vw, 50vw"
-              width={800}
-              height={1200}
-              alt="Psicóloga Danielle Robertis em uma postura profissional e acolhedora, usando roupa social discreta em um ambiente tranquilo"
-              loading="lazy"
-              decoding="async"
-              className="rounded-lg shadow-xl relative z-10 w-full object-cover aspect-[3/4] md:aspect-[4/5]"
-            />
+            <figure className="relative z-10 w-full">
+              <Image
+                src="/danielle-robertis-psicologa-sobre.jpeg"
+                alt="Psicóloga Danielle Robertis em uma postura profissional e acolhedora, usando roupa social discreta em um ambiente tranquilo"
+                width={800}
+                height={1200}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="rounded-lg shadow-xl w-full object-cover aspect-[3/4] md:aspect-[4/5]"
+                priority
+              />
+              <figcaption className="sr-only">
+                Psicóloga Danielle Robertis em ambiente profissional
+              </figcaption>
+            </figure>
 
             {/* Professional badge */}
             <div className="absolute -bottom-4 md:-right-4 left-1/2 md:left-auto transform md:transform-none -translate-x-1/2 md:translate-x-0 bg-white shadow-lg rounded-full py-2 px-4 flex items-center gap-2 z-20">
               <span className="bg-green/10 p-2 rounded-full">
                 <Award className="w-4 h-4 text-green" />
               </span>
-              <span className="text-sm font-medium">CRP 06/111222</span>
+              <span className="text-sm font-medium">CRP XX/XXXXX</span>
             </div>
           </div>
 
