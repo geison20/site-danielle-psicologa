@@ -21,35 +21,59 @@ const Services = () => {
 
   const services = [
     {
-      title: "Terapia Individual",
-      description:
-        "Atendimento personalizado para adultos e adolescentes, focado em questões emocionais e comportamentais.",
+      title: "Perinatalidade",
+      description: "Planejamento familiar e maternidade",
       details:
-        "Sessões de 50 minutos, formato presencial ou online, abordagem cognitivo-comportamental.",
-      icon: "user",
-    },
-    {
-      title: "Terapia para Casais",
-      description:
-        "Facilitação do diálogo e resolução de conflitos, fortalecendo a comunicação e reconexão emocional.",
-      details:
-        "Sessões de 1h30, formato presencial ou online, abordagem sistêmica e comportamental.",
+        "Acompanhamento para mulheres e casais que enfrentam desafios relacionados à gestação, adoção ou parentalidade.",
       icon: "users",
     },
     {
-      title: "Avaliação Psicológica",
-      description:
-        "Processo de investigação que analisa comportamentos, habilidades e características psicológicas.",
+      title: "Gestação e Pós-Parto",
+      description: "Apoio emocional durante a gravidez e o puerpério",
       details:
-        "Aplicação de testes psicológicos, entrevistas e observações comportamentais.",
+        "Gestão da ansiedade, identidade materna e estratégias de autocuidado.",
+      icon: "shield",
+    },
+    {
+      title: "Relação Mãe-Bebê",
+      description: "Fortalecimento do vínculo afetivo",
+      details:
+        "Orientações para promover conexão saudável desde os primeiros momentos de vida.",
+      icon: "shield-check",
+    },
+    {
+      title: "Luto Perinatal",
+      description: "Acolhimento em perdas gestacionais ou neonatais",
+      details:
+        "Espaço para o luto, compreensão da dor e estratégias de ressignificação.",
       icon: "list-check",
     },
     {
-      title: "Orientação para Pais",
-      description:
-        "Apoio para o desenvolvimento de habilidades parentais e manejo de comportamentos dos filhos.",
+      title: "Desenvolvimento Infantil",
+      description: "Orientação nos primeiros anos de vida",
       details:
-        "Sessões individuais ou em grupo, abordagem prática com estratégias aplicáveis ao dia a dia.",
+        "Cuidados com sono, alimentação e estímulos afetivos, incluindo apoio à paternidade.",
+      icon: "users",
+    },
+    {
+      title: "Orientação Parental",
+      description: "Suporte para pais e cuidadores",
+      details:
+        "Desenvolvimento de habilidades para lidar com os desafios da criação dos filhos.",
+      icon: "list-check",
+    },
+    {
+      title: "Adolescência",
+      description: "Apoio psicológico para adolescentes",
+      details:
+        "Questões de identidade, autoestima, relacionamentos e transições dessa fase da vida.",
+      icon: "shield",
+    },
+    {
+      title: "Acompanhamento Psiquiátrico",
+      description: "Suporte complementar ao tratamento médico",
+      details:
+        "Promoção do bem-estar emocional e da adesão ao tratamento psiquiátrico.",
       icon: "shield-check",
     },
   ];
@@ -66,13 +90,11 @@ const Services = () => {
       <div className="section-container relative z-10">
         <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
           <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium mb-3">
-            Serviços Especializados
+            Áreas de Atuação
           </span>
-          <h2 className="heading-lg mb-5">Meus Serviços</h2>
+          <h2 className="heading-lg mb-5">Como posso ajudar</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Ofereço uma variedade de serviços terapêuticos adaptados às
-            necessidades individuais de cada cliente, com foco em resultados e
-            bem-estar emocional.
+            Conheça minhas especialidades e escolha o acompanhamento que melhor se adequa às suas necessidades.
           </p>
         </div>
 

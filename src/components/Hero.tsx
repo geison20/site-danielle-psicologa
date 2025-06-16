@@ -27,20 +27,15 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6 md:space-y-8 animate-fade-in order-2 md:order-1">
             <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium">
-              Psicóloga | CRP XX/XXXXX
+              Psicóloga Clínica
             </span>
 
-            <h1
-              id="hero-heading"
-              className="heading-xl text-balance leading-tight"
-            >
-              Cuidando da sua saúde mental com empatia e profissionalismo
+            <h1 id="hero-heading" className="heading-xl text-balance leading-tight">
+              Acolhimento psicológico para todas as fases da vida
             </h1>
 
             <p className="text-lg text-gray-700 max-w-lg">
-              Psicóloga Danielle Robertis, especialista em terapia
-              cognitivo-comportamental, oferece atendimento humanizado para
-              ajudar você a superar desafios e alcançar bem-estar emocional.
+              Sou Danielle Vincenzo, especialista em Psicopatologia e Psiquiatria pela FMUSP. Ofereço acolhimento a adolescentes, mulheres e famílias, promovendo bem-estar emocional e vínculos saudáveis desde os primeiros dias de vida.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2">

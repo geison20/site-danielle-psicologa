@@ -62,14 +62,11 @@ const CTASection = () => {
                 </span>
 
                 <h2 className="heading-lg mb-4 text-gray-900">
-                  Dê o primeiro passo para o seu bem-estar emocional
+                  Inicie sua jornada de bem-estar emocional
                 </h2>
 
                 <p className="text-gray-600 mb-8 max-w-lg">
-                  Estou disponível para ajudar você em sua jornada de
-                  autoconhecimento e transformação. Entre em contato para
-                  agendar sua consulta ou tirar dúvidas sobre o processo
-                  terapêutico.
+                  Estou à disposição para acompanhar você em sua jornada de autoconhecimento e transformação. Entre em contato para agendar uma consulta ou esclarecer suas dúvidas sobre o processo terapêutico.
                 </p>
 
                 <div className="space-y-4 mb-8">

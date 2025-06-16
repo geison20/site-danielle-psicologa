@@ -14,15 +14,16 @@ import { Analytics } from "@vercel/analytics/next";
 // });
 
 export const metadata: Metadata = {
-  title: "Psicóloga Danielle Robertis",
+  title: "Psicóloga Danielle Vincenzo",
   description:
-    "Psicóloga em São Paulo, especialista em Terapia Cognitivo-Comportamental (TCC), atendimento presencial e online.",
+    "Acolhimento psicológico especializado para adolescentes, mulheres e famílias, promovendo o bem-estar emocional e o fortalecimento de vínculos saudáveis em todas as fases da vida.",
   keywords: [
     "Psicóloga",
-    "Terapia Cognitivo-Comportamental",
-    "TCC",
-    "Atendimento presencial",
-    "Atendimento online",
+    "Psicologia perinatal",
+    "Saúde da mulher",
+    "Desenvolvimento infantil",
+    "Adolescência",
+    "Acompanhamento psiquiátrico",
   ],
   robots: {
     index: true,
@@ -38,11 +39,11 @@ export const metadata: Metadata = {
   // },
   // charset: "utf-8",
   openGraph: {
-    siteName: "Psicóloga Danielle Robertis",
+    siteName: "Psicóloga Danielle Vincenzo",
     locale: "pt-BR",
-    title: "Psicóloga Danielle Robertis",
+    title: "Psicóloga Danielle Vincenzo",
     description:
-      "Psicóloga em São Paulo, especialista em Terapia Cognitivo-Comportamental (TCC), atendimento presencial e online.",
+      "Acolhimento psicológico especializado para adolescentes, mulheres e famílias, promovendo o bem-estar emocional e o fortalecimento de vínculos saudáveis em todas as fases da vida.",
     type: "website",
     url: "https://www.daniellerobertis.com.br",
     countryName: "Brasil",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
-        alt: "Psicóloga Danielle Robertis",
+        alt: "Psicóloga Danielle Vincenzo",
         type: "image/jpeg",
         width: 1200,
         height: 1200,
@@ -62,9 +63,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "https://www.daniellerobertis.com.br",
     creator: "@daniellerobertis",
-    title: "Psicóloga Danielle Robertis",
+    title: "Psicóloga Danielle Vincenzo",
     description:
-      "Psicóloga em São Paulo, especialista em Terapia Cognitivo-Comportamental (TCC), atendimento presencial e online.",
+      "Acolhimento psicológico especializado para adolescentes, mulheres e famílias, promovendo o bem-estar emocional e o fortalecimento de vínculos saudáveis em todas as fases da vida.",
     images: [
       "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
     ],

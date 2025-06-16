@@ -14,7 +14,7 @@ const Location = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    name: "Psicóloga Danielle Robertis",
+    name: "Psicóloga Danielle Vincenzo",
     image: "https://www.seusite.com.br/danielle-robertis-psicologa.jpeg",
     address: {
       "@type": "PostalAddress",
@@ -58,7 +58,7 @@ const Location = () => {
             Consultório de Psicologia em São Paulo - Alto da Boa Vista
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Psicóloga Danielle Robertis atende em consultório localizado no
+            Psicóloga Danielle Vincenzo atende em consultório localizado no
             bairro Alto da Boa Vista, São Paulo, com fácil acesso, ambiente
             tranquilo e acolhedor. Agende sua consulta presencial ou online.
           </p>
@@ -90,8 +90,8 @@ const Location = () => {
               <a
                 href={`tel:${phone}`}
                 className="inline-flex items-center gap-2 text-purple-dark font-medium mb-4 hover:underline"
-                aria-label="Ligar para o consultório Danielle Robertis"
-                title="Ligar para o consultório Danielle Robertis"
+                aria-label="Ligar para o consultório Danielle Vincenzo"
+                title="Ligar para o consultório Danielle Vincenzo"
               >
                 <Phone className="w-4 h-4" />
                 (11) 96455-6323
@@ -133,7 +133,7 @@ const Location = () => {
                 className="z-0"
               ></iframe>
               <figcaption className="sr-only">
-                Mapa de localização do consultório Danielle Robertis
+                Mapa de localização do consultório Danielle Vincenzo
               </figcaption>
             </figure>
           </div>
