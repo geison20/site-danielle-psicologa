@@ -86,8 +86,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
           <div>
-            <h3 className="text-xl font-serif font-bold mb-5 text-white relative inline-block">
-              Danielle Robertis
+          <h3 className="text-xl font-serif font-bold mb-5 text-white relative inline-block">
+              Danielle Vincenzo
               <span
                 className="absolute -bottom-1 left-0 w-12 h-0.5 bg-green"
                 aria-hidden="true"
@@ -95,10 +95,7 @@ const Footer = () => {
             </h3>
             <Card className="bg-white/5 backdrop-blur-sm border-white/10 p-6">
               <p className="text-gray-300 mb-5 leading-relaxed">
-                Psicóloga clínica especializada em terapia
-                cognitivo-comportamental, oferecendo atendimento humanizado e
-                profissional para ajudar você a alcançar bem-estar emocional e
-                mental.
+                Psicóloga clínica especialista em Psicopatologia e Psiquiatria pela FMUSP. Oferece acolhimento psicológico para adolescentes, mulheres e famílias, promovendo vínculos saudáveis em todas as fases da vida.
               </p>
               <p className="text-green-light font-medium">CRP XX/XXXXX</p>
 
@@ -182,9 +179,7 @@ const Footer = () => {
 
         <div className="text-center text-gray-400 text-sm">
           <p>
-            &copy; {currentYear} Psicóloga Danielle Robertis | Psicóloga em São
-            Paulo, especialista em Terapia Cognitivo-Comportamental (TCC),
-            atendimento presencial e online. Todos os direitos reservados.
+            &copy; {currentYear} Psicóloga Danielle Vincenzo | Acolhimento psicológico especializado para adolescentes, mulheres e famílias. Todos os direitos reservados.
           </p>
         </div>
       </div>

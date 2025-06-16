@@ -38,10 +38,10 @@ const Navbar = () => {
           aria-label="Voltar para o topo"
         >
           <span className="text-2xl font-serif font-bold text-green-dark">
-            Danielle Robertis
+            Danielle Vincenzo
           </span>
           <span className="ml-2 text-sm text-gray-600 hidden sm:inline-block">
-            Psicóloga | CRP XX/XXXXX
+            Psicóloga Clínica
           </span>
         </a>
 

@@ -31,7 +31,7 @@ const About = () => {
             id="sobre-heading"
             className="heading-lg mb-4 text-balance mx-auto max-w-3xl"
           >
-            Sobre Danielle Robertis
+            Sobre Danielle Vincenzo
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Conheça mais sobre minha formação, abordagem terapêutica e
@@ -54,7 +54,7 @@ const About = () => {
             <figure className="relative z-10 w-full">
               <Image
                 src="/danielle-robertis-psicologa-sobre.jpeg"
-                alt="Psicóloga Danielle Robertis em uma postura profissional e acolhedora, usando roupa social discreta em um ambiente tranquilo"
+                alt="Psicóloga Danielle Vincenzo em uma postura profissional e acolhedora, usando roupa social discreta em um ambiente tranquilo"
                 width={800}
                 height={1200}
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -62,7 +62,7 @@ const About = () => {
                 priority
               />
               <figcaption className="sr-only">
-                Psicóloga Danielle Robertis em ambiente profissional
+                Psicóloga Danielle Vincenzo em ambiente profissional
               </figcaption>
             </figure>
 
@@ -76,18 +76,12 @@ const About = () => {
           </div>
 
           <div className="order-1 md:order-2 space-y-6 animate-fade-in">
-            <h3 className="heading-md mb-4">Olá, sou a Danielle!</h3>
+            <h3 className="heading-md mb-4">Prazer, sou Danielle Vincenzo</h3>
             <p className="mb-5 text-gray-700">
-              Sou psicóloga formada pela Universidade de São Paulo (USP), com
-              mais de 10 anos de experiência em atendimento clínico.
-              Especialista em Terapia Cognitivo-Comportamental (TCC) e
-              pós-graduada em Neuropsicologia pela PUC.
+              Psicóloga clínica especializada em Psicopatologia e Psiquiatria pela Faculdade de Medicina da USP (IPq-FMUSP). Atuei no Instituto de Psiquiatria do Hospital das Clínicas, onde aprimorei uma escuta acolhedora e humanizada.
             </p>
             <p className="mb-8 text-gray-700">
-              Minha abordagem é centrada na pessoa, acreditando que cada
-              indivíduo é único e merece um tratamento personalizado. Trabalho
-              com adultos e adolescentes, oferecendo um espaço seguro e
-              acolhedor para o autoconhecimento e desenvolvimento pessoal.
+              Realizo atendimentos para adolescentes, mulheres em todas as fases da maternidade e famílias. Integro conhecimentos de psicologia perinatal, saúde da mulher e psicopatologia, sempre buscando fortalecer vínculos e promover bem-estar emocional desde os primeiros mil dias de vida.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -115,13 +109,13 @@ const About = () => {
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Especialização em TCC - FMUSP</span>
+                      <span>Especialização em Psicopatologia e Psiquiatria - IPq-FMUSP</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Pós-graduação em Neuropsicologia - PUC</span>
+                      <span>Atuação no Instituto de Psiquiatria do HC-FMUSP</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -145,25 +139,25 @@ const About = () => {
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Ansiedade e Depressão</span>
+                      <span>Saúde mental perinatal e maternidade</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Relacionamentos</span>
+                      <span>Desenvolvimento infantil e orientação familiar</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Desenvolvimento pessoal</span>
+                      <span>Adolescência</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Estresse e Burnout</span>
+                      <span>Acompanhamento em tratamento psiquiátrico</span>
                     </li>
                   </ul>
                 </CardContent>
