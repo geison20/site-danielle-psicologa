@@ -82,7 +82,7 @@ export default function InstagramFeed() {
             {visible.map((embedHtml, index) => (
               <div
                 key={index}
-                className={`flex-1 max-w-[320px] min-h-[700px] ${
+                className={`flex-1 max-w-[400px] ${
                   index === 1
                     ? "hidden sm:block"
                     : index === 2
@@ -91,7 +91,6 @@ export default function InstagramFeed() {
                 }`}
               >
                 <div
-                  className="w-full h-full"
                   dangerouslySetInnerHTML={{
                     __html: embedHtml,
                   }}
@@ -113,7 +112,7 @@ export default function InstagramFeed() {
         </div>
 
         {/* Link para o perfil */}
-        <div className="text-center mt-12">
+        <div className="text-center p-6">
           <Button
             asChild
             variant="outline"

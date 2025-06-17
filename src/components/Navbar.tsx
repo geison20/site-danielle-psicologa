@@ -37,7 +37,7 @@ const Navbar = () => {
           className="flex items-center"
           aria-label="Voltar para o topo"
         >
-          <span className="text-2xl font-serif font-bold text-green-dark">
+          <span className="text-xl md:text-2xl font-serif font-bold text-green-dark">
             Danielle Robertis de Vincenzo
           </span>
           <span className="ml-2 text-sm text-gray-600 hidden sm:inline-block">
