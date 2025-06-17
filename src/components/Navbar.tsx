@@ -38,7 +38,7 @@ const Navbar = () => {
           aria-label="Voltar para o topo"
         >
           <span className="text-2xl font-serif font-bold text-green-dark">
-            Danielle Vincenzo
+            Danielle Robertis de Vincenzo
           </span>
           <span className="ml-2 text-sm text-gray-600 hidden sm:inline-block">
             Psicóloga Clínica
@@ -73,6 +73,15 @@ const Navbar = () => {
                 className="text-gray-800 hover:text-green"
               >
                 Sobre
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#location"
+                title="Ir para a seção de Localização"
+                className="text-gray-800 hover:text-green"
+              >
+                Localização
               </Link>
             </li>
             <li>
@@ -122,6 +131,16 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Sobre
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#location"
+                title="Ir para a seção de Localização"
+                className="text-gray-800 hover:text-green py-2 border-b border-gray-100 block"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Localização
               </Link>
             </li>
             <li>

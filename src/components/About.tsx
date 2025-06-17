@@ -31,7 +31,7 @@ const About = () => {
             id="sobre-heading"
             className="heading-lg mb-4 text-balance mx-auto max-w-3xl"
           >
-            Sobre Danielle Vincenzo
+            Sobre Danielle Robertis de Vincenzo
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Conheça mais sobre minha formação, abordagem terapêutica e
@@ -71,17 +71,24 @@ const About = () => {
               <span className="bg-green/10 p-2 rounded-full">
                 <Award className="w-4 h-4 text-green" />
               </span>
-              <span className="text-sm font-medium">CRP XX/XXXXX</span>
+              <span className="text-sm font-medium">CRP 06/134354</span>
             </div>
           </div>
 
           <div className="order-1 md:order-2 space-y-6 animate-fade-in">
             <h3 className="heading-md mb-4">Prazer, sou Danielle Vincenzo</h3>
             <p className="mb-5 text-gray-700">
-              Psicóloga clínica especializada em Psicopatologia e Psiquiatria pela Faculdade de Medicina da USP (IPq-FMUSP). Atuei no Instituto de Psiquiatria do Hospital das Clínicas, onde aprimorei uma escuta acolhedora e humanizada.
+              Psicóloga clínica especializada em Psicopatologia e Psiquiatria
+              pela Faculdade de Medicina da USP (IPq-FMUSP). Atuei no Instituto
+              de Psiquiatria do Hospital das Clínicas, onde aprimorei uma escuta
+              acolhedora e humanizada.
             </p>
             <p className="mb-8 text-gray-700">
-              Realizo atendimentos para adolescentes, mulheres em todas as fases da maternidade e famílias. Integro conhecimentos de psicologia perinatal, saúde da mulher e psicopatologia, sempre buscando fortalecer vínculos e promover bem-estar emocional desde os primeiros mil dias de vida.
+              Realizo atendimentos para adolescentes, mulheres em todas as fases
+              da maternidade e famílias. Integro conhecimentos de psicologia
+              perinatal, saúde da mulher e psicopatologia, sempre buscando
+              fortalecer vínculos e promover bem-estar emocional desde os
+              primeiros mil dias de vida.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -109,13 +116,18 @@ const About = () => {
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Especialização em Psicopatologia e Psiquiatria - IPq-FMUSP</span>
+                      <span>
+                        Especialização em Psicopatologia e Psiquiatria -
+                        IPq-FMUSP
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Atuação no Instituto de Psiquiatria do HC-FMUSP</span>
+                      <span>
+                        Atuação no Instituto de Psiquiatria do HC-FMUSP
+                      </span>
                     </li>
                   </ul>
                 </CardContent>
@@ -145,7 +157,9 @@ const About = () => {
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Desenvolvimento infantil e orientação familiar</span>
+                      <span>
+                        Desenvolvimento infantil e orientação familiar
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">

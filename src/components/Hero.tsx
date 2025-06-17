@@ -30,12 +30,18 @@ const Hero = () => {
               Psicóloga Clínica
             </span>
 
-            <h1 id="hero-heading" className="heading-xl text-balance leading-tight">
+            <h1
+              id="hero-heading"
+              className="heading-xl text-balance leading-tight"
+            >
               Acolhimento psicológico para todas as fases da vida
             </h1>
 
             <p className="text-lg text-gray-700 max-w-lg">
-              Sou Danielle Vincenzo, especialista em Psicopatologia e Psiquiatria pela FMUSP. Ofereço acolhimento a adolescentes, mulheres e famílias, promovendo bem-estar emocional e vínculos saudáveis desde os primeiros dias de vida.
+              Sou Danielle Robertis de Vincenzo, especialista em Psicopatologia
+              e Psiquiatria pela FMUSP. Ofereço acolhimento a adolescentes,
+              mulheres e famílias, promovendo bem-estar emocional e vínculos
+              saudáveis desde os primeiros dias de vida.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2">
@@ -110,7 +116,7 @@ const Hero = () => {
           aria-hidden="true"
         >
           <a
-            href="#sobre"
+            href="#servicos"
             aria-label="Rolar para a seção Sobre"
             title="Rolar para a seção Sobre"
             className="inline-flex items-center justify-center p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all group"

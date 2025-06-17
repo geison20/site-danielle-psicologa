@@ -51,9 +51,6 @@ const Location = () => {
 
       <div className="section-container relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-purple/10 text-purple-dark rounded-full text-sm font-medium mb-3">
-            Onde Atendo
-          </span>
           <h2 className="heading-lg mb-5">
             Consultório de Psicologia em São Paulo - Alto da Boa Vista
           </h2>

@@ -13,68 +13,69 @@ import {
   Users,
   ListCheck,
   ShieldCheck,
+  Heart,
+  Baby,
+  UserCheck,
+  Stethoscope,
 } from "lucide-react";
-import Image from "next/image";
 
 const Services = () => {
-  const isMobile = false;
-
   const services = [
     {
       title: "Perinatalidade",
       description: "Planejamento familiar e maternidade",
       details:
         "Acompanhamento para mulheres e casais que enfrentam desafios relacionados à gestação, adoção ou parentalidade.",
-      icon: "users",
+      icon: "heart",
     },
     {
       title: "Gestação e Pós-Parto",
       description: "Apoio emocional durante a gravidez e o puerpério",
       details:
         "Gestão da ansiedade, identidade materna e estratégias de autocuidado.",
-      icon: "shield",
+      icon: "baby",
     },
     {
       title: "Relação Mãe-Bebê",
       description: "Fortalecimento do vínculo afetivo",
       details:
         "Orientações para promover conexão saudável desde os primeiros momentos de vida.",
-      icon: "shield-check",
+      icon: "users",
     },
     {
       title: "Luto Perinatal",
       description: "Acolhimento em perdas gestacionais ou neonatais",
       details:
         "Espaço para o luto, compreensão da dor e estratégias de ressignificação.",
-      icon: "list-check",
+      icon: "shield",
     },
     {
       title: "Desenvolvimento Infantil",
       description: "Orientação nos primeiros anos de vida",
       details:
         "Cuidados com sono, alimentação e estímulos afetivos, incluindo apoio à paternidade.",
-      icon: "users",
+      icon: "baby",
     },
     {
       title: "Orientação Parental",
       description: "Suporte para pais e cuidadores",
       details:
         "Desenvolvimento de habilidades para lidar com os desafios da criação dos filhos.",
-      icon: "list-check",
+      icon: "user-check",
     },
     {
       title: "Adolescência",
       description: "Apoio psicológico para adolescentes",
       details:
         "Questões de identidade, autoestima, relacionamentos e transições dessa fase da vida.",
-      icon: "shield",
+      icon: "users",
     },
     {
       title: "Acompanhamento Psiquiátrico",
       description: "Suporte complementar ao tratamento médico",
       details:
         "Promoção do bem-estar emocional e da adesão ao tratamento psiquiátrico.",
-      icon: "shield-check",
+      icon: "stethoscope",
     },
   ];
 
@@ -94,7 +95,8 @@ const Services = () => {
           </span>
           <h2 className="heading-lg mb-5">Como posso ajudar</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Conheça minhas especialidades e escolha o acompanhamento que melhor se adequa às suas necessidades.
+            Conheça minhas especialidades e escolha o acompanhamento que melhor
+            se adequa às suas necessidades.
           </p>
         </div>
 
@@ -104,17 +106,23 @@ const Services = () => {
               <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green/10 bg-white/80 backdrop-blur">
                 <CardHeader className="pb-2">
                   <div className="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center mb-4">
-                    {service.icon === "user" && (
-                      <Shield className="h-6 w-6 text-green" />
+                    {service.icon === "heart" && (
+                      <Heart className="h-6 w-6 text-green" />
+                    )}
+                    {service.icon === "baby" && (
+                      <Baby className="h-6 w-6 text-green" />
                     )}
                     {service.icon === "users" && (
                       <Users className="h-6 w-6 text-green" />
                     )}
-                    {service.icon === "list-check" && (
-                      <ListCheck className="h-6 w-6 text-green" />
+                    {service.icon === "shield" && (
+                      <Shield className="h-6 w-6 text-green" />
                     )}
-                    {service.icon === "shield-check" && (
-                      <ShieldCheck className="h-6 w-6 text-green" />
+                    {service.icon === "user-check" && (
+                      <UserCheck className="h-6 w-6 text-green" />
+                    )}
+                    {service.icon === "stethoscope" && (
+                      <Stethoscope className="h-6 w-6 text-green" />
                     )}
                   </div>
                   <CardTitle className="text-xl md:text-2xl text-green-dark">
@@ -134,40 +142,45 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="mt-20 bg-white rounded-xl p-8 md:p-10 shadow-md border border-green/10 transform hover:shadow-lg transition-all duration-300">
-          <div className="flex flex-col items-center justify-center text-center">
+        <div className="mt-20 bg-white rounded-xl p-8 md:p-12 shadow-md border border-green/10 transform hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-col items-center justify-center text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-green/10 px-3 py-1.5 rounded-full text-green-dark text-sm font-medium mb-4">
               <Laptop className="w-4 h-4" />
               <span>Flexível e Conveniente</span>
             </div>
 
-            <h3 className="heading-md mb-5 text-green-dark">
+            <h3 className="heading-md mb-4 text-green-dark">
               Atendimento Online
             </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-600 mb-8">
               Ofereço terapia online através de plataforma segura e
               confidencial. É uma opção conveniente e eficaz, especialmente para
               quem tem agenda corrida, viaja com frequência ou prefere o
               conforto de sua casa.
             </p>
 
-            <h4 className="text-green-dark font-semibold mb-2">
-              Benefícios do Atendimento Online
-            </h4>
-            <ul className="space-y-3 max-w-lg mx-auto">
-              {[
-                "Mesma qualidade do atendimento presencial",
-                "Flexibilidade de horários",
-                "Economia de tempo e deslocamento",
-              ].map((item, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="bg-green/10 p-1.5 rounded-full mt-0.5">
-                    <Check className="h-4 w-4 text-green" />
-                  </span>
-                  <span className="text-gray-700 text-left">{item}</span>
-                </li>
-              ))}
-            </ul>
+            {/* CTA Button */}
+            <a
+              href="https://wa.me/5511964556323"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <span>Agendar Consulta Online</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
@@ -86,8 +78,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
           <div>
-          <h3 className="text-xl font-serif font-bold mb-5 text-white relative inline-block">
-              Danielle Vincenzo
+            <h3 className="text-xl font-serif font-bold mb-5 text-white relative inline-block">
+              Danielle Robertis de Vincenzo
               <span
                 className="absolute -bottom-1 left-0 w-12 h-0.5 bg-green"
                 aria-hidden="true"
@@ -95,28 +87,26 @@ const Footer = () => {
             </h3>
             <Card className="bg-white/5 backdrop-blur-sm border-white/10 p-6">
               <p className="text-gray-300 mb-5 leading-relaxed">
-                Psicóloga clínica especialista em Psicopatologia e Psiquiatria pela FMUSP. Oferece acolhimento psicológico para adolescentes, mulheres e famílias, promovendo vínculos saudáveis em todas as fases da vida.
+                Psicóloga clínica especialista em Psicopatologia e Psiquiatria
+                pela FMUSP. Oferece acolhimento psicológico para adolescentes,
+                mulheres e famílias, promovendo vínculos saudáveis em todas as
+                fases da vida.
               </p>
-              <p className="text-green-light font-medium">CRP XX/XXXXX</p>
+              <p className="text-green-light font-medium">CRP 06/134354</p>
 
               <div
                 className="flex flex-wrap gap-4 mt-6"
                 aria-label="Redes sociais"
               >
                 <SocialLink
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/psico.daniellerobertis"
                   icon={Facebook}
                   label="Siga-me no Facebook"
                 />
                 <SocialLink
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/danielle.psicologia"
                   icon={Instagram}
                   label="Siga-me no Instagram"
-                />
-                <SocialLink
-                  href="https://linkedin.com"
-                  icon={Linkedin}
-                  label="Conecte-se comigo no LinkedIn"
                 />
               </div>
             </Card>
@@ -155,14 +145,14 @@ const Footer = () => {
                 <ul className="space-y-5 text-gray-300">
                   <ContactItem icon={Mail} title="E-mail">
                     <p className="text-white/80 hover:text-green transition-colors">
-                      <a href="mailto:contato@daniellepsicologia.com.br">
-                        contato@daniellepsicologia.com.br
+                      <a href="mailto:danielle.robertis.psicologa@gmail.com">
+                        danielle.robertis.psicologa@gmail.com
                       </a>
                     </p>
                   </ContactItem>
                   <ContactItem icon={Phone} title="Telefone">
                     <p className="text-white/80 hover:text-green transition-colors">
-                      <a href="tel:+551199999999">(11) 99999-9999</a>
+                      <a href="tel:+5511964556323">(11) 96455-6323</a>
                     </p>
                   </ContactItem>
                   <ContactItem icon={MapPin} title="Endereço">
@@ -179,7 +169,9 @@ const Footer = () => {
 
         <div className="text-center text-gray-400 text-sm">
           <p>
-            &copy; {currentYear} Psicóloga Danielle Vincenzo | Acolhimento psicológico especializado para adolescentes, mulheres e famílias. Todos os direitos reservados.
+            &copy; {currentYear} Danielle Robertis de Vincenzo | Acolhimento
+            psicológico especializado para adolescentes, mulheres e famílias.
+            Todos os direitos reservados.
           </p>
         </div>
       </div>
