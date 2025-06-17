@@ -65,24 +65,35 @@ export default function InstagramFeed() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Botão anterior */}
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95 md:left-4"
-            aria-label="Post anterior"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
+        <div>
+          {/* Botões de navegação */}
+          <div className="flex justify-between mb-8">
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={prev}
+              className="bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95"
+              aria-label="Post anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={next}
+              className="bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95"
+              aria-label="Próximo post"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
 
           {/* Área que contém os embeds */}
-          <div className="flex items-stretch justify-center gap-4 md:gap-6 overflow-hidden px-12 md:px-16">
+          <div className="flex justify-center gap-4 md:gap-6 overflow-hidden">
             {visible.map((embedHtml, index) => (
               <div
                 key={index}
-                className={`flex-1 max-w-[400px] ${
+                className={`flex-1 ${
                   index === 1
                     ? "hidden sm:block"
                     : index === 2
@@ -98,17 +109,6 @@ export default function InstagramFeed() {
               </div>
             ))}
           </div>
-
-          {/* Botão próximo */}
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95 md:right-4"
-            aria-label="Próximo post"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
         </div>
 
         {/* Link para o perfil */}
