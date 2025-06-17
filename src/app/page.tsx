@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
 import Location from "@/components/Location";
 import Instagram from "@/components/InstagramFeed";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 
 export default function Home() {
   return (
@@ -40,6 +41,9 @@ export default function Home() {
       <footer role="contentinfo">
         <Footer />
       </footer>
+
+      {/* Botão flutuante do WhatsApp */}
+      <FloatingWhatsAppButton />
     </>
   );
 }
