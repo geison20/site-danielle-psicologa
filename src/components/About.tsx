@@ -54,7 +54,7 @@ const About = () => {
             <figure className="relative z-10 w-full">
               <Image
                 src="/danielle-robertis-psicologa-sobre.jpeg"
-                alt="Psicóloga Danielle Vincenzo em uma postura profissional e acolhedora, usando roupa social discreta em um ambiente tranquilo"
+                alt="Psicóloga Danielle Robertis de Vincenzo, CRP 06/134354, especialista em psicologia perinatal e acolhimento de adolescentes, mulheres e famílias em São Paulo"
                 width={800}
                 height={1200}
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -78,9 +78,8 @@ const About = () => {
           <div className="order-1 md:order-2 space-y-6 animate-fade-in">
             <h3 className="heading-md mb-4">Prazer, sou Danielle Vincenzo</h3>
             <p className="mb-5 text-gray-700">
-              Psicóloga clínica especializada em Psicopatologia e Psiquiatria
-              pela Faculdade de Medicina da USP (IPq-FMUSP). Atuei no Instituto
-              de Psiquiatria do Hospital das Clínicas, onde aprimorei uma escuta
+              Psicóloga clínica especializada em Psicopatologia e Psiquiatria.
+              Atuei em instituto de psiquiatria, onde aprimorei uma escuta
               acolhedora e humanizada.
             </p>
             <p className="mb-8 text-gray-700">
@@ -110,15 +109,14 @@ const About = () => {
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
-                      <span>Graduação em Psicologia - USP</span>
+                      <span>Graduação em Psicologia</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green mt-1" aria-hidden="true">
                         •
                       </span>
                       <span>
-                        Especialização em Psicopatologia e Psiquiatria -
-                        IPq-FMUSP
+                        Especialização em Psicopatologia e Psiquiatria
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -126,7 +124,7 @@ const About = () => {
                         •
                       </span>
                       <span>
-                        Atuação no Instituto de Psiquiatria do HC-FMUSP
+                        Atuação em Instituto de Psiquiatria
                       </span>
                     </li>
                   </ul>

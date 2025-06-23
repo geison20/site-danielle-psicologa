@@ -87,8 +87,8 @@ const Footer = () => {
             </h3>
             <Card className="bg-white/5 backdrop-blur-sm border-white/10 p-6">
               <p className="text-gray-300 mb-5 leading-relaxed">
-                Psicóloga clínica especialista em Psicopatologia e Psiquiatria
-                pela FMUSP. Oferece acolhimento psicológico para adolescentes,
+                Psicóloga clínica especialista em Psicopatologia e Psiquiatria.
+                Oferece acolhimento psicológico para adolescentes,
                 mulheres e famílias, promovendo vínculos saudáveis em todas as
                 fases da vida.
               </p>

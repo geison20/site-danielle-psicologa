@@ -6,7 +6,7 @@ const Location = () => {
   const isMobile = false;
 
   const address =
-    "Torre Norte - R. Nove de Julho, 72 - Conjunto 141 - Alto da Boa Vista, São Paulo - SP, 05716-150";
+    "Av. Paulista, 1000, cj 101 - Cerqueira César, São Paulo - SP";
   const encodedAddress = encodeURIComponent(address);
   const phone = "+5511964556323";
 
@@ -15,22 +15,22 @@ const Location = () => {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     name: "Psicóloga Danielle Vincenzo",
-    image: "https://www.seusite.com.br/danielle-robertis-psicologa.jpeg",
+    image: "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "R. Nove de Julho, 72 - Conjunto 141",
-      addressLocality: "Alto da Boa Vista",
+      streetAddress: "Av. Paulista, 1000, cj 101",
+      addressLocality: "Cerqueira César",
       addressRegion: "SP",
-      postalCode: "05716-150",
+      postalCode: "01310-100",
       addressCountry: "BR",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: -23.643813,
-      longitude: -46.702601,
+      latitude: -23.5616,
+      longitude: -46.6563,
     },
     telephone: "+55 11 96455-6323",
-    url: "https://www.seusite.com.br/",
+    url: "https://www.daniellerobertis.com.br/",
     priceRange: "R$",
     openingHours: "Mo-Fr 09:00-19:00",
   };

@@ -39,7 +39,7 @@ const Hero = () => {
 
             <p className="text-lg text-gray-700 max-w-lg">
               Sou Danielle Robertis de Vincenzo, especialista em Psicopatologia
-              e Psiquiatria pela FMUSP. Ofereço acolhimento a adolescentes,
+              e Psiquiatria. Ofereço acolhimento a adolescentes,
               mulheres e famílias, promovendo bem-estar emocional e vínculos
               saudáveis desde os primeiros dias de vida.
             </p>
@@ -95,7 +95,7 @@ const Hero = () => {
               <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
                 <Image
                   src="/danielle-robertis-psicologa.jpeg"
-                  alt="Ambiente acolhedor do consultório de psicologia com decoração em tons neutros, cadeiras confortáveis e iluminação suave"
+                  alt="Psicóloga Danielle Robertis de Vincenzo em ambiente profissional acolhedor, especialista em psicologia clínica e acolhimento familiar em São Paulo"
                   fill
                   sizes="(max-width: 380px) 100vw, 380px"
                   className="object-cover"

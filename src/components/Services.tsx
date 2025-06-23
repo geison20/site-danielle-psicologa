@@ -79,11 +79,59 @@ const Services = () => {
     },
   ];
 
+  // Schema.org para lista de serviços
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Serviços de Psicologia Clínica",
+    description: "Especialidades oferecidas pela Psicóloga Danielle Vincenzo em São Paulo",
+    provider: {
+      "@type": "Person",
+      name: "Danielle Robertis de Vincenzo",
+      jobTitle: "Psicóloga Clínica",
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        identifier: "CRP 06/134354"
+      }
+    },
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "MedicalProcedure",
+        name: service.title,
+        description: `${service.description}. ${service.details}`,
+        category: "Psychological Therapy",
+        provider: {
+          "@type": "Person",
+          name: "Danielle Robertis de Vincenzo"
+        },
+        location: {
+          "@type": "Place",
+          name: "Consultório Psicológico Danielle Vincenzo",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Av. Paulista, 1000, cj 101",
+            addressLocality: "São Paulo",
+            addressRegion: "SP",
+            addressCountry: "BR"
+          }
+        }
+      }
+    }))
+  };
+
   return (
     <section
       id="servicos"
       className="bg-gradient-to-br from-cream-light/20 to-white py-20 md:py-32 relative overflow-hidden"
     >
+      {/* Schema estruturado para serviços */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+      
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-green/5 rounded-full -mr-20 -mt-20"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-green/10 rounded-full -ml-20 -mb-20 hidden md:block"></div>
