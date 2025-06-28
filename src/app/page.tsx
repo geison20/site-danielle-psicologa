@@ -8,7 +8,6 @@ import CTASection from "@/components/CTASection";
 import Location from "@/components/Location";
 import Instagram from "@/components/InstagramFeed";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
-import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -36,7 +35,6 @@ export default function Home() {
         <About />
         <Instagram />
         <Testimonials />
-        <FAQ />
         <Location />
         <CTASection />
       </main>

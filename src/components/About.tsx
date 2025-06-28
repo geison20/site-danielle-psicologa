@@ -25,7 +25,7 @@ const About = () => {
       <div className="section-container relative z-10">
         <div className="text-center mb-14 md:mb-16">
           <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium mb-3">
-            Psicóloga Especialista
+            Psicóloga Clínica | CRP 06/134354
           </span>
           <h2
             id="sobre-heading"
@@ -34,8 +34,8 @@ const About = () => {
             Sobre Danielle Robertis de Vincenzo
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Conheça mais sobre minha formação, abordagem terapêutica e
-            experiência profissional.
+            Acolhimento psicológico especializado para adolescentes, mulheres e famílias, 
+            promovendo o bem-estar emocional e o fortalecimento de vínculos saudáveis em todas as fases da vida.
           </p>
         </div>
 
@@ -78,16 +78,15 @@ const About = () => {
           <div className="order-1 md:order-2 space-y-6 animate-fade-in">
             <h3 className="heading-md mb-4">Prazer, sou Danielle Vincenzo</h3>
             <p className="mb-5 text-gray-700">
-              Psicóloga clínica especializada em Psicopatologia e Psiquiatria.
-              Atuei em instituto de psiquiatria, onde aprimorei uma escuta
-              acolhedora e humanizada.
+              Psicóloga clínica especialista em Psicopatologia e Psiquiatria pela Faculdade de Medicina da USP (IPq-FMUSP).
+              Com sólida formação e atuação no Instituto de Psiquiatria do Hospital das Clínicas da FMUSP, 
+              desenvolvo atendimentos especializados com uma escuta acolhedora e humanizada.
             </p>
             <p className="mb-8 text-gray-700">
               Realizo atendimentos para adolescentes, mulheres em todas as fases
-              da maternidade e famílias. Integro conhecimentos de psicologia
-              perinatal, saúde da mulher e psicopatologia, sempre buscando
-              fortalecer vínculos e promover bem-estar emocional desde os
-              primeiros mil dias de vida.
+              da maternidade e famílias, com foco no desenvolvimento emocional infantil nos primeiros mil dias de vida.
+              Minha abordagem integra conhecimentos de psicologia perinatal, saúde da mulher e psicopatologia, 
+              visando promover o bem-estar emocional e o fortalecimento de vínculos familiares.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -116,7 +115,7 @@ const About = () => {
                         •
                       </span>
                       <span>
-                        Especialização em Psicopatologia e Psiquiatria
+                        Especialização em Psicopatologia e Psiquiatria pela FMUSP
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -124,7 +123,15 @@ const About = () => {
                         •
                       </span>
                       <span>
-                        Atuação em Instituto de Psiquiatria
+                        Atuação no IPq-HC-FMUSP
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green mt-1" aria-hidden="true">
+                        •
+                      </span>
+                      <span>
+                        Especialista em Perinatalidade
                       </span>
                     </li>
                   </ul>
@@ -175,6 +182,81 @@ const About = () => {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+
+        {/* Nova seção de Formação e Especialização */}
+        <div className="mt-20 bg-white/60 backdrop-blur rounded-lg p-8 md:p-10 shadow-lg">
+          <h3 className="heading-md mb-8 text-center">Formação e Especialização</h3>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold text-green-dark mb-4 flex items-center gap-2">
+                <Award className="w-5 h-5" />
+                Formação Acadêmica
+              </h4>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Psicologia</span>
+                    <p className="text-sm text-gray-600">Graduação completa com formação clínica</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Especialização em Psicopatologia e Psiquiatria</span>
+                    <p className="text-sm text-gray-600">Faculdade de Medicina da USP (IPq-FMUSP)</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Especialização em Perinatalidade</span>
+                    <p className="text-sm text-gray-600">Foco no desenvolvimento infantil e vínculos familiares</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-green-dark mb-4 flex items-center gap-2">
+                <Star className="w-5 h-5" />
+                Experiência e Atuação
+              </h4>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Instituto de Psiquiatria do HC-FMUSP</span>
+                    <p className="text-sm text-gray-600">Atuação clínica e desenvolvimento de abordagem humanizada</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Psicologia Perinatal</span>
+                    <p className="text-sm text-gray-600">Especialista nos primeiros mil dias de vida</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green mt-1">•</span>
+                  <div>
+                    <span className="font-medium">Saúde da Mulher</span>
+                    <p className="text-sm text-gray-600">Acompanhamento em todas as fases da maternidade</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 p-6 bg-green/5 rounded-lg border border-green/20">
+            <p className="text-center text-gray-700">
+              <strong className="text-green-dark">Abordagem Integrativa:</strong> Meu trabalho integra conhecimentos 
+              da psicologia perinatal, saúde da mulher e psicopatologia, visando promover o bem-estar emocional 
+              e o fortalecimento de vínculos familiares saudáveis em todas as fases da vida.
+            </p>
           </div>
         </div>
       </div>
