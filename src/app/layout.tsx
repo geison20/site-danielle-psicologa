@@ -119,7 +119,7 @@ export default function RootLayout({
         
         <StructuredData />
       </head>
-      <GoogleTagManager gtmId="GTM-525252525" />
+      <GoogleTagManager gtmId="GTM-T8TF7VC3" />
 
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
