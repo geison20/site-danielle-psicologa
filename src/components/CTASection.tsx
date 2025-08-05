@@ -1,9 +1,20 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { MessageSquare, ArrowRight, Clock, Phone, Send } from "lucide-react";
 import Image from "next/image";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const CTASection = () => {
   const isMobile = false;
+
+  const handleWhatsAppClick = () => {
+    sendGAEvent("event", "WhatsAppClick", {
+      event_category: "engagement",
+      event_label: "cta_section"
+    });
+    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+  };
 
   return (
     <section
@@ -97,20 +108,13 @@ const CTASection = () => {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    asChild
+                    onClick={handleWhatsAppClick}
                     size="lg"
-                    className="bg-green hover:bg-green-dark text-white shadow-lg hover:shadow-xl transition-all"
+                    className="bg-green hover:bg-green-dark text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                   >
-                    <a
-                      href="https://wa.me/5511964556323"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <Send className="w-5 h-5" />
-                      Agendar pelo WhatsApp
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </a>
+                    <Send className="w-5 h-5" />
+                    Agendar pelo WhatsApp
+                    <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
               </div>

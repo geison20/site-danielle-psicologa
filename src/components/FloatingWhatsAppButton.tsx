@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { sendGAEvent } from "@next/third-parties/google";
 
 // Componente do ícone do WhatsApp
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -16,6 +17,12 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 const FloatingWhatsAppButton = () => {
   const handleWhatsAppClick = () => {
+    // Envia evento para o Google Analytics
+    sendGAEvent("event", "WhatsAppClick", {
+      event_category: "engagement",
+      event_label: "floating_button"
+    });
+    
     // Mesma ação dos botões CTA - abre o WhatsApp
     window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
   };

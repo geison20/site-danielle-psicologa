@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -18,6 +20,7 @@ import {
   UserCheck,
   Stethoscope,
 } from "lucide-react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const Services = () => {
   const services = [
@@ -208,10 +211,14 @@ const Services = () => {
             </p>
 
             {/* CTA Button */}
-            <a
-              href="https://wa.me/5511964556323"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => {
+                sendGAEvent("event", "WhatsAppClick", {
+                  event_category: "engagement",
+                  event_label: "services_section"
+                });
+                window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+              }}
               className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               <span>Agendar Consulta Online</span>
@@ -228,7 +235,7 @@ const Services = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>

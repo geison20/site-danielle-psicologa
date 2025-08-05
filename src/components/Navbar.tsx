@@ -4,10 +4,19 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleWhatsAppClick = (label: string) => {
+    sendGAEvent("event", "WhatsAppClick", {
+      event_category: "engagement",
+      event_label: label
+    });
+    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,18 +94,14 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Button asChild className="bg-green hover:bg-green-dark">
-                <a
-                  href="https://wa.me/5511964556323"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  aria-label="Agendar consulta pelo WhatsApp"
-                  title="Agende sua consulta pelo WhatsApp"
-                  className="flex items-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Agende sua consulta
-                </a>
+              <Button 
+                onClick={() => handleWhatsAppClick("navbar_desktop")}
+                className="bg-green hover:bg-green-dark flex items-center gap-2"
+                aria-label="Agendar consulta pelo WhatsApp"
+                title="Agende sua consulta pelo WhatsApp"
+              >
+                <MessageSquare className="w-4 h-4" />
+                Agende sua consulta
               </Button>
             </li>
           </ul>
@@ -165,21 +170,16 @@ const Navbar = () => {
             </li>
             <li>
               <Button
-                asChild
-                className="bg-green hover:bg-green-dark w-full justify-center"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  handleWhatsAppClick("navbar_mobile");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="bg-green hover:bg-green-dark w-full justify-center flex items-center gap-2"
+                aria-label="Agendar consulta pelo WhatsApp"
+                title="Agende sua consulta pelo WhatsApp"
               >
-                <a
-                  href="https://wa.me/5511964556323"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  aria-label="Agendar consulta pelo WhatsApp"
-                  title="Agende sua consulta pelo WhatsApp"
-                  className="flex items-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Agende sua consulta
-                </a>
+                <MessageSquare className="w-4 h-4" />
+                Agende sua consulta
               </Button>
             </li>
           </ul>

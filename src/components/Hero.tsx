@@ -1,11 +1,22 @@
+"use client";
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const Hero = () => {
   const isMobile = false;
+
+  const handleWhatsAppClick = () => {
+    sendGAEvent("event", "WhatsAppClick", {
+      event_category: "engagement",
+      event_label: "hero_section"
+    });
+    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+  };
 
   return (
     <section
@@ -46,21 +57,14 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2">
               <Button
-                asChild
+                onClick={handleWhatsAppClick}
                 size="lg"
-                className="bg-green hover:bg-green-dark shadow-lg hover:shadow-xl transition-all"
+                className="bg-green hover:bg-green-dark shadow-lg hover:shadow-xl transition-all flex items-center gap-2 px-8"
+                aria-label="Agendar consulta pelo WhatsApp"
+                title="Agende sua consulta pelo WhatsApp"
               >
-                <a
-                  href="https://wa.me/5511964556323"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  aria-label="Agendar consulta pelo WhatsApp"
-                  title="Agende sua consulta pelo WhatsApp"
-                  className="flex items-center gap-2 px-8"
-                >
-                  <MessageSquare className="w-5 h-5" />
-                  Agende sua consulta
-                </a>
+                <MessageSquare className="w-5 h-5" />
+                Agende sua consulta
               </Button>
 
               <Button
