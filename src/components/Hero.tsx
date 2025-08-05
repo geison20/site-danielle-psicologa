@@ -13,9 +13,9 @@ const Hero = () => {
   const handleWhatsAppClick = () => {
     sendGAEvent("event", "WhatsAppClick", {
       event_category: "engagement",
-      event_label: "hero_section"
+      event_label: "hero_section",
     });
-    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+    // window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -50,9 +50,9 @@ const Hero = () => {
 
             <p className="text-lg text-gray-700 max-w-lg">
               Sou Danielle Robertis de Vincenzo, especialista em Psicopatologia
-              e Psiquiatria. Ofereço acolhimento a adolescentes,
-              mulheres e famílias, promovendo bem-estar emocional e vínculos
-              saudáveis desde os primeiros dias de vida.
+              e Psiquiatria. Ofereço acolhimento a adolescentes, mulheres e
+              famílias, promovendo bem-estar emocional e vínculos saudáveis
+              desde os primeiros dias de vida.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2">
