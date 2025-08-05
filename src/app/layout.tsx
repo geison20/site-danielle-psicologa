@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "geo.region": "BR-SP",
     "geo.placename": "São Paulo",
     "geo.position": "-23.5616;-46.6563",
-    "ICBM": "-23.5616, -46.6563",
+    ICBM: "-23.5616, -46.6563",
   },
   robots: {
     index: true,
@@ -52,14 +52,20 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
     googleBot: "index, follow",
   },
-  authors: [{ name: "Danielle Robertis de Vincenzo", url: "https://www.daniellerobertis.com.br" }],
+  authors: [
+    {
+      name: "Danielle Robertis de Vincenzo",
+      url: "https://www.daniellerobertis.com.br",
+    },
+  ],
   generator: "Next.js",
   category: "healthcare",
   classification: "psychology",
   openGraph: {
     siteName: "Psicóloga Danielle Vincenzo",
     locale: "pt-BR",
-    title: "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
+    title:
+      "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
     description:
       "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo. Consultas presenciais na Av. Paulista. CRP 06/134354.",
     type: "website",
@@ -81,7 +87,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "https://www.daniellerobertis.com.br",
     creator: "@daniellerobertis",
-    title: "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
+    title:
+      "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
     description:
       "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo. Consultas presenciais na Av. Paulista. CRP 06/134354.",
     images: [
@@ -116,10 +123,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        
+
         <StructuredData />
       </head>
-      <GoogleTagManager gtmId="GTM-T8TF7VC3" />
+      <GoogleTagManager gtmId="G-SS4V5MR9NE" />
 
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
