@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import StructuredData from "@/components/StructuredData";
 import Hotjar from "@/components/Hotjar";
@@ -126,8 +126,9 @@ export default function RootLayout({
 
         <StructuredData />
       </head>
-      <GoogleTagManager gtmId="GTM-NM2Q2ZZD" />
-
+      {/* <GoogleTagManager gtmId="G-SS4V5MR9NE" /> */}
+      {/* <GoogleTagManager gtmId="GTM-NM2Q2ZZD" /> */}
+      <GoogleAnalytics gaId="G-SS4V5MR9NE" />
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
