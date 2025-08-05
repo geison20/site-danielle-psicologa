@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import StructuredData from "@/components/StructuredData";
+import Hotjar from "@/components/Hotjar";
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -123,6 +124,7 @@ export default function RootLayout({
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Hotjar />
         {children}
         <Analytics />
       </body>
