@@ -8,18 +8,8 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import {
-  Check,
-  Laptop,
-  Shield,
-  Users,
-  ListCheck,
-  ShieldCheck,
-  Heart,
-  Baby,
-  UserCheck,
-  Stethoscope,
-} from "lucide-react";
+import Image from "next/image";
+import { Laptop } from "lucide-react";
 import { sendGAEvent } from "@next/third-parties/google";
 
 const Services = () => {
@@ -29,56 +19,80 @@ const Services = () => {
       description: "Planejamento familiar e maternidade",
       details:
         "Acompanhamento para mulheres e casais que enfrentam desafios relacionados à gestação, adoção ou parentalidade.",
-      icon: "heart",
+      image: {
+        src: "/images/services/perinatalidade.jpg",
+        alt: "Mãos acariciando a barriga de uma gestante",
+      },
     },
     {
       title: "Gestação e Pós-Parto",
       description: "Apoio emocional durante a gravidez e o puerpério",
       details:
         "Gestão da ansiedade, identidade materna e estratégias de autocuidado.",
-      icon: "baby",
+      image: {
+        src: "/images/services/gestacao-pos-parto.jpg",
+        alt: "Mãe segurando o recém-nascido nos braços",
+      },
     },
     {
       title: "Relação Mãe-Bebê",
       description: "Fortalecimento do vínculo afetivo",
       details:
         "Orientações para promover conexão saudável desde os primeiros momentos de vida.",
-      icon: "users",
+      image: {
+        src: "/images/services/relacao-mae-bebe.jpg",
+        alt: "Mãe beijando o bebê recém-nascido",
+      },
     },
     {
       title: "Luto Perinatal",
       description: "Acolhimento em perdas gestacionais ou neonatais",
       details:
         "Espaço para o luto, compreensão da dor e estratégias de ressignificação.",
-      icon: "shield",
+      image: {
+        src: "/images/services/luto-perinatal.jpg",
+        alt: "Casal abraçado em gesto de acolhimento",
+      },
     },
     {
       title: "Desenvolvimento Infantil",
       description: "Orientação nos primeiros anos de vida",
       details:
         "Cuidados com sono, alimentação e estímulos afetivos, incluindo apoio à paternidade.",
-      icon: "baby",
+      image: {
+        src: "/images/services/desenvolvimento-infantil.jpg",
+        alt: "Crianças pequenas brincando juntas no tapete",
+      },
     },
     {
       title: "Orientação Parental",
       description: "Suporte para pais e cuidadores",
       details:
         "Desenvolvimento de habilidades para lidar com os desafios da criação dos filhos.",
-      icon: "user-check",
+      image: {
+        src: "/images/services/orientacao-parental.jpg",
+        alt: "Pais abraçando a filha em momento de conexão",
+      },
     },
     {
       title: "Adolescência",
       description: "Apoio psicológico para adolescentes",
       details:
         "Questões de identidade, autoestima, relacionamentos e transições dessa fase da vida.",
-      icon: "users",
+      image: {
+        src: "/images/services/adolescencia.jpg",
+        alt: "Adolescente sorrindo ao ar livre",
+      },
     },
     {
       title: "Acompanhamento Psiquiátrico",
       description: "Suporte complementar ao tratamento médico",
       details:
         "Promoção do bem-estar emocional e da adesão ao tratamento psiquiátrico.",
-      icon: "stethoscope",
+      image: {
+        src: "/images/services/acompanhamento-psiquiatrico.jpg",
+        alt: "Profissional de saúde anotando durante sessão terapêutica",
+      },
     },
   ];
 
@@ -154,40 +168,32 @@ const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <article key={index} className="h-full" aria-label={service.title}>
-              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green/10 bg-white/80 backdrop-blur">
-                <CardHeader className="pb-2">
-                  <div className="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center mb-4">
-                    {service.icon === "heart" && (
-                      <Heart className="h-6 w-6 text-green" />
-                    )}
-                    {service.icon === "baby" && (
-                      <Baby className="h-6 w-6 text-green" />
-                    )}
-                    {service.icon === "users" && (
-                      <Users className="h-6 w-6 text-green" />
-                    )}
-                    {service.icon === "shield" && (
-                      <Shield className="h-6 w-6 text-green" />
-                    )}
-                    {service.icon === "user-check" && (
-                      <UserCheck className="h-6 w-6 text-green" />
-                    )}
-                    {service.icon === "stethoscope" && (
-                      <Stethoscope className="h-6 w-6 text-green" />
-                    )}
-                  </div>
+              <Card className="h-full flex flex-col overflow-hidden border-green/10 bg-white/80 backdrop-blur transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={service.image.src}
+                    alt={service.image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"
+                    priority={index < 2}
+                  />
+                </div>
+                <CardHeader className="space-y-3 pb-0">
                   <CardTitle className="text-xl md:text-2xl text-green-dark">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-base mt-2 text-gray-700">
+                  <CardDescription className="text-base text-gray-700">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600 pt-1">
-                    {service.details}
-                  </p>
-                </CardContent>
+                {service.details && (
+                  <CardContent className="pt-4">
+                    <p className="text-sm text-gray-600">
+                      {service.details}
+                    </p>
+                  </CardContent>
+                )}
               </Card>
             </article>
           ))}

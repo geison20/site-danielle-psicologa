@@ -36,7 +36,6 @@ export default function Home() {
         <Instagram />
         <Testimonials />
         <Location />
-        <CTASection />
       </main>
       <footer role="contentinfo">
         <Footer />

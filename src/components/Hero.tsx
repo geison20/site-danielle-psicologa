@@ -87,15 +87,15 @@ const Hero = () => {
 
                 <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
                   <Image
-                    src="/danielle-robertis-psicologa.jpeg"
-                    alt="Psicóloga Danielle Robertis de Vincenzo em ambiente profissional acolhedor, especialista em psicologia clínica e acolhimento familiar em São Paulo"
+                    src="/images/services/relacao-mae-bebe.jpg"
+                    alt="Mãe beijando o bebê recém-nascido"
                     fill
                     sizes="(max-width: 380px) 100vw, 380px"
                     className="object-cover"
                     priority
                   />
                   <figcaption className="sr-only">
-                    Ambiente acolhedor do consultório de psicologia
+                    Mãe acolhendo seu bebê com carinho durante acompanhamento psicológico perinatal
                   </figcaption>
                 </figure>
               </div>
