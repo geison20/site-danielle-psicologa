@@ -24,14 +24,16 @@ const FloatingWhatsAppButton = () => {
     });
     
     // Mesma ação dos botões CTA - abre o WhatsApp
-    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+    const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
+    window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <Button
         onClick={handleWhatsAppClick}
-        className="w-14 h-14 rounded-full bg-green hover:bg-green-dark text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 p-0"
+        className="w-14 h-14 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 p-0"
+        style={{ backgroundColor: 'rgb(29, 215, 113)' }}
         aria-label="Conversar no WhatsApp"
       >
         <WhatsAppIcon className="w-6 h-6" />

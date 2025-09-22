@@ -15,7 +15,8 @@ const Navbar = () => {
       event_category: "engagement",
       event_label: label
     });
-    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+    const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
+    window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   useEffect(() => {
@@ -96,11 +97,13 @@ const Navbar = () => {
             <li>
               <Button 
                 onClick={() => handleWhatsAppClick("navbar_desktop")}
-                className="bg-green hover:bg-green-dark flex items-center gap-2"
+                size="lg"
+                className="flex items-center gap-2 px-6 py-3 text-base"
+                style={{ backgroundColor: 'rgb(29, 215, 113)' }}
                 aria-label="Agendar consulta pelo WhatsApp"
                 title="Agende sua consulta pelo WhatsApp"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-5 h-5" />
                 Agende sua consulta
               </Button>
             </li>
@@ -174,11 +177,13 @@ const Navbar = () => {
                   handleWhatsAppClick("navbar_mobile");
                   setIsMobileMenuOpen(false);
                 }}
-                className="bg-green hover:bg-green-dark w-full justify-center flex items-center gap-2"
+                size="lg"
+                className="w-full justify-center flex items-center gap-2 px-6 py-4 text-base"
+                style={{ backgroundColor: 'rgb(29, 215, 113)' }}
                 aria-label="Agendar consulta pelo WhatsApp"
                 title="Agende sua consulta pelo WhatsApp"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-5 h-5" />
                 Agende sua consulta
               </Button>
             </li>

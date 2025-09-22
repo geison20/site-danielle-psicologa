@@ -81,8 +81,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Open Sans", "sans-serif"],
-        serif: ["Merriweather", "serif"],
+        sans: ["ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+        serif: ["ui-sans-serif", "system-ui"],
       },
       borderRadius: {
         lg: "var(--radius)",

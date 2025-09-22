@@ -13,9 +13,16 @@ const Hero = () => {
   const handleWhatsAppClick = () => {
     sendGAEvent("event", "WhatsAppClick", {
       event_category: "engagement",
-      event_label: "hero_section"
+      event_label: "hero_section",
     });
-    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+    const message = encodeURIComponent(
+      "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
+    );
+    window.open(
+      `https://wa.me/5511964556323?text=${message}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
@@ -37,80 +44,65 @@ const Hero = () => {
       <div className="section-container relative z-10">
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6 md:space-y-8 animate-fade-in order-2 md:order-1">
-            <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium">
-              Psicóloga Clínica
-            </span>
-
             <h1
               id="hero-heading"
               className="heading-xl text-balance leading-tight"
             >
-              Acolhimento psicológico para todas as fases da vida
+              Acompanhamento psicológico para{" "}
+              <span className="text-green">
+                sua jornada única da maternidade
+              </span>
             </h1>
 
             <p className="text-lg text-gray-700 max-w-lg">
-              Sou Danielle Robertis de Vincenzo, especialista em Psicopatologia
-              e Psiquiatria. Ofereço acolhimento a adolescentes,
-              mulheres e famílias, promovendo bem-estar emocional e vínculos
-              saudáveis desde os primeiros dias de vida.
+              Suporte emocional especializado desde o desejo de ser mãe até o
+              pós-parto. Com a Terapia Cognitivo Comportamental, transformo
+              desafios em crescimento pessoal e bem-estar.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2">
+            <div className="pt-2">
               <Button
                 onClick={handleWhatsAppClick}
                 size="lg"
-                className="bg-green hover:bg-green-dark shadow-lg hover:shadow-xl transition-all flex items-center gap-2 px-8"
+                className="w-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 px-16 py-6 text-xl font-semibold rounded-2xl"
+                style={{ backgroundColor: "rgb(29, 215, 113)" }}
                 aria-label="Agendar consulta pelo WhatsApp"
                 title="Agende sua consulta pelo WhatsApp"
               >
-                <MessageSquare className="w-5 h-5" />
+                <MessageSquare className="w-7 h-7" />
                 Agende sua consulta
               </Button>
-
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-green text-green hover:text-green-dark"
-              >
-                <Link
-                  href="#servicos"
-                  aria-label="Ver serviços disponíveis"
-                  title="Conheça meus serviços"
-                  className="flex items-center gap-2"
-                >
-                  Conheça meus serviços
-                </Link>
-              </Button>
             </div>
+
+            {!isMobile && (
+              <div className="relative flex justify-center mt-8">
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] bg-green/10 rounded-full"
+                  aria-hidden="true"
+                ></div>
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[260px] md:h-[260px] lg:w-[340px] lg:h-[340px] bg-green/20 rounded-full"
+                  aria-hidden="true"
+                ></div>
+
+                <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
+                  <Image
+                    src="/danielle-robertis-psicologa.jpeg"
+                    alt="Psicóloga Danielle Robertis de Vincenzo em ambiente profissional acolhedor, especialista em psicologia clínica e acolhimento familiar em São Paulo"
+                    fill
+                    sizes="(max-width: 380px) 100vw, 380px"
+                    className="object-cover"
+                    priority
+                  />
+                  <figcaption className="sr-only">
+                    Ambiente acolhedor do consultório de psicologia
+                  </figcaption>
+                </figure>
+              </div>
+            )}
           </div>
 
-          {!isMobile && (
-            <div className="relative flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] bg-green/10 rounded-full"
-                aria-hidden="true"
-              ></div>
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[260px] md:h-[260px] lg:w-[340px] lg:h-[340px] bg-green/20 rounded-full"
-                aria-hidden="true"
-              ></div>
-
-              <figure className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px]">
-                <Image
-                  src="/danielle-robertis-psicologa.jpeg"
-                  alt="Psicóloga Danielle Robertis de Vincenzo em ambiente profissional acolhedor, especialista em psicologia clínica e acolhimento familiar em São Paulo"
-                  fill
-                  sizes="(max-width: 380px) 100vw, 380px"
-                  className="object-cover"
-                  priority
-                />
-                <figcaption className="sr-only">
-                  Ambiente acolhedor do consultório de psicologia
-                </figcaption>
-              </figure>
-            </div>
-          )}
+          <div className="order-1 md:order-2"></div>
         </div>
       </div>
 

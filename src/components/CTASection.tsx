@@ -13,7 +13,8 @@ const CTASection = () => {
       event_category: "engagement",
       event_label: "cta_section"
     });
-    window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+    const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
+    window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -110,11 +111,12 @@ const CTASection = () => {
                   <Button
                     onClick={handleWhatsAppClick}
                     size="lg"
-                    className="bg-green hover:bg-green-dark text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                    className="text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-3 px-8 py-4 text-lg font-semibold"
+                    style={{ backgroundColor: 'rgb(29, 215, 113)' }}
                   >
-                    <Send className="w-5 h-5" />
+                    <Send className="w-6 h-6" />
                     Agendar pelo WhatsApp
-                    <ArrowRight className="w-4 h-4 ml-1" />
+                    <ArrowRight className="w-5 h-5 ml-1" />
                   </Button>
                 </div>
               </div>

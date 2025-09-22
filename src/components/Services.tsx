@@ -217,9 +217,11 @@ const Services = () => {
                   event_category: "engagement",
                   event_label: "services_section"
                 });
-                window.open("https://wa.me/5511964556323", "_blank", "noopener,noreferrer");
+                const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
+                window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
               }}
-              className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+              style={{ backgroundColor: 'rgb(29, 215, 113)' }}
             >
               <span>Agendar Consulta Online</span>
               <svg

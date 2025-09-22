@@ -126,9 +126,10 @@ export default function RootLayout({
 
         <StructuredData />
       </head>
-      {/* <GoogleTagManager gtmId="G-SS4V5MR9NE" /> */}
-      {/* <GoogleTagManager gtmId="GTM-NM2Q2ZZD" /> */}
-      <GoogleAnalytics gaId="G-SS4V5MR9NE" />
+      <GoogleAnalytics
+        gaId="G-SS4V5MR9NE"
+        {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
+      />
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
