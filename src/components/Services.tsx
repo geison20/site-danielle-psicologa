@@ -70,7 +70,7 @@ const Services = () => {
       details:
         "Desenvolvimento de habilidades para lidar com os desafios da criação dos filhos.",
       image: {
-        src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80",
+        src: "/images/services/orientacao-parental.png",
         alt: "Pais lendo uma história com a filha em clima acolhedor",
       },
     },
