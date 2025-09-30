@@ -76,97 +76,6 @@ const About = () => {
               psicopatologia, visando promover o bem-estar emocional e o
               fortalecimento de vínculos familiares.
             </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-              <Card className="bg-white/80 backdrop-blur border-green/10 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span
-                      className="bg-green/10 p-2 rounded-full"
-                      aria-hidden="true"
-                    >
-                      <Star className="w-4 h-4 text-green" />
-                    </span>
-                    <h4 className="font-semibold text-green-dark">
-                      Formação Acadêmica
-                    </h4>
-                  </div>
-                  <ul className="text-sm space-y-2 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Graduação em Psicologia</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>
-                        Especialização em Psicopatologia e Psiquiatria pela
-                        FMUSP
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Atuação no IPq-HC-FMUSP</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Especialista em Perinatalidade</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/80 backdrop-blur border-green/10 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span
-                      className="bg-green/10 p-2 rounded-full"
-                      aria-hidden="true"
-                    >
-                      <Award className="w-4 h-4 text-green" />
-                    </span>
-                    <h4 className="font-semibold text-green-dark">
-                      Áreas de Atuação
-                    </h4>
-                  </div>
-                  <ul className="text-sm space-y-2 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Saúde mental perinatal e maternidade</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>
-                        Desenvolvimento infantil e orientação familiar
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Adolescência</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green mt-1" aria-hidden="true">
-                        •
-                      </span>
-                      <span>Acompanhamento em tratamento psiquiátrico</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
 
@@ -188,7 +97,7 @@ const About = () => {
                   <div>
                     <span className="font-medium">Psicologia</span>
                     <p className="text-sm text-gray-600">
-                      Graduação completa com formação clínica
+                      Formação em psicologia perinatal (gestação e pós parto)
                     </p>
                   </div>
                 </li>
@@ -196,11 +105,8 @@ const About = () => {
                   <span className="text-green mt-1">•</span>
                   <div>
                     <span className="font-medium">
-                      Especialização em Psicopatologia e Psiquiatria
+                      Formação em saúde da mulher
                     </span>
-                    <p className="text-sm text-gray-600">
-                      Faculdade de Medicina da USP (IPq-FMUSP)
-                    </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">

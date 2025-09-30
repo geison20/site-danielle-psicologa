@@ -70,8 +70,8 @@ const Services = () => {
       details:
         "Desenvolvimento de habilidades para lidar com os desafios da criação dos filhos.",
       image: {
-        src: "/images/services/orientacao-parental.jpg",
-        alt: "Pais abraçando a filha em momento de conexão",
+        src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80",
+        alt: "Pais lendo uma história com a filha em clima acolhedor",
       },
     },
     {
@@ -101,15 +101,16 @@ const Services = () => {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Serviços de Psicologia Clínica",
-    description: "Especialidades oferecidas pela Psicóloga Danielle Vincenzo em São Paulo",
+    description:
+      "Especialidades oferecidas pela Psicóloga Danielle Vincenzo em São Paulo",
     provider: {
       "@type": "Person",
       name: "Danielle Robertis de Vincenzo",
       jobTitle: "Psicóloga Clínica",
       hasCredential: {
         "@type": "EducationalOccupationalCredential",
-        identifier: "CRP 06/134354"
-      }
+        identifier: "CRP 06/134354",
+      },
     },
     itemListElement: services.map((service, index) => ({
       "@type": "ListItem",
@@ -121,7 +122,7 @@ const Services = () => {
         category: "Psychological Therapy",
         provider: {
           "@type": "Person",
-          name: "Danielle Robertis de Vincenzo"
+          name: "Danielle Robertis de Vincenzo",
         },
         location: {
           "@type": "Place",
@@ -131,11 +132,11 @@ const Services = () => {
             streetAddress: "Av. Paulista, 1000, cj 101",
             addressLocality: "São Paulo",
             addressRegion: "SP",
-            addressCountry: "BR"
-          }
-        }
-      }
-    }))
+            addressCountry: "BR",
+          },
+        },
+      },
+    })),
   };
 
   return (
@@ -148,23 +149,12 @@ const Services = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
-      
+
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-green/5 rounded-full -mr-20 -mt-20"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-green/10 rounded-full -ml-20 -mb-20 hidden md:block"></div>
 
       <div className="section-container relative z-10">
-        <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
-          <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium mb-3">
-            Áreas de Atuação
-          </span>
-          <h2 className="heading-lg mb-5">Como posso ajudar</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Conheça minhas especialidades e escolha o acompanhamento que melhor
-            se adequa às suas necessidades.
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <article key={index} className="h-full" aria-label={service.title}>
@@ -189,9 +179,7 @@ const Services = () => {
                 </CardHeader>
                 {service.details && (
                   <CardContent className="pt-4">
-                    <p className="text-sm text-gray-600">
-                      {service.details}
-                    </p>
+                    <p className="text-sm text-gray-600">{service.details}</p>
                   </CardContent>
                 )}
               </Card>
@@ -221,13 +209,19 @@ const Services = () => {
               onClick={() => {
                 sendGAEvent("event", "WhatsAppClick", {
                   event_category: "engagement",
-                  event_label: "services_section"
+                  event_label: "services_section",
                 });
-                const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
-                window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
+                const message = encodeURIComponent(
+                  "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
+                );
+                window.open(
+                  `https://wa.me/5511964556323?text=${message}`,
+                  "_blank",
+                  "noopener,noreferrer"
+                );
               }}
               className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-              style={{ backgroundColor: 'rgb(29, 215, 113)' }}
+              style={{ backgroundColor: "rgb(29, 215, 113)" }}
             >
               <span>Agendar Consulta Online</span>
               <svg
