@@ -136,7 +136,7 @@ const InfiniteTestimonialCarousel = () => {
     return doubledTestimonials.map((testimonial, index) => (
       <article
         key={`${testimonial.id}-${index}`}
-        className="inline-block w-[380px] bg-gray-800 rounded-lg p-6 text-white shadow-lg"
+        className="inline-block w-[380px] bg-white rounded-lg p-6 text-[#677e77] shadow-lg border border-green/10"
         style={{
           willChange: "transform",
           translate: "none",
@@ -144,7 +144,7 @@ const InfiniteTestimonialCarousel = () => {
         aria-label={`Depoimento de ${testimonial.name}`}
       >
         <div className="flex items-center gap-4 mb-3">
-          <Avatar className="h-12 w-12 border-2 border-purple">
+          <Avatar className="h-12 w-12 border-2 border-green">
             {testimonial.avatar ? (
               <AvatarImage
                 src={testimonial.avatar}
@@ -154,7 +154,7 @@ const InfiniteTestimonialCarousel = () => {
                 loading="lazy"
               />
             ) : (
-              <AvatarFallback className="bg-purple-light text-purple-dark">
+              <AvatarFallback className="bg-green/10 text-green-dark">
                 {testimonial.name
                   .split(" ")
                   .map((name) => name[0])
@@ -175,23 +175,23 @@ const InfiniteTestimonialCarousel = () => {
             </svg>
           ))}
         </div>
-        <blockquote className="text-gray-200 whitespace-normal mb-4">
+        <blockquote className="whitespace-normal mb-4">
           “{testimonial.text}”
         </blockquote>
         <footer className="flex flex-col">
-          <cite className="not-italic text-blue-400 font-semibold text-lg">
+          <cite className="not-italic text-[#364943] font-semibold text-lg">
             {testimonial.name}
           </cite>
-          <span className="text-gray-300 text-sm">{testimonial.date}</span>
+          <span className="text-[#677e77]/80 text-sm">{testimonial.date}</span>
         </footer>
       </article>
     ));
   }, []);
 
   return (
-    <div className="w-full bg-gray-900 py-16">
+    <div className="w-full bg-white py-16">
       <div className="container mx-auto px-4 mb-8">
-        <h2 className="heading-lg text-center text-white mb-10">
+        <h2 className="heading-lg text-center mb-10">
           O Que Nossos Clientes Dizem
         </h2>
       </div>

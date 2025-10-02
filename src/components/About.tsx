@@ -1,177 +1,139 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Award } from "lucide-react";
 import Image from "next/image";
+import {
+  GraduationCap,
+  Heart,
+  Stethoscope,
+  School,
+  BookOpen,
+  Users,
+} from "lucide-react";
 
 const About = () => {
-  const isMobile = false;
-
   return (
-    <section
-      id="sobre"
-      aria-labelledby="sobre-heading"
-      className="bg-gradient-to-br from-white to-cream-light/30 py-20 md:py-28 relative overflow-hidden"
-    >
-      {/* Decorative elements */}
-      <div
-        className="absolute bottom-0 right-0 w-80 h-80 bg-green/5 rounded-full -mr-20 -mb-20"
-        aria-hidden="true"
-      ></div>
-      <div
-        className="absolute top-0 left-0 w-64 h-64 bg-green/10 rounded-full -ml-20 -mt-20 hidden md:block"
-        aria-hidden="true"
-      ></div>
+    <section id="sobre" className="bg-white">
+      <div className="section-container">
+        <header className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+          <h2 className="heading-lg">Sobre Mim</h2>
+        </header>
 
-      <div className="section-container relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="relative order-2 md:order-1 animate-fade-in">
-            {/* Image with decorative elements */}
-            <div
-              className="absolute -top-5 -left-5 w-full h-full bg-cream-light rounded-lg transform rotate-3"
-              aria-hidden="true"
-            ></div>
-            <div
-              className="absolute -bottom-5 -right-5 w-full h-full bg-green/20 rounded-lg transform -rotate-3"
-              aria-hidden="true"
-            ></div>
-
-            <figure className="relative z-10 w-full">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div>
+            <figure className="relative rounded-xl overflow-hidden shadow-sm">
               <Image
                 src="/danielle-robertis-psicologa-sobre.jpeg"
-                alt="Psicóloga Danielle Robertis de Vincenzo, CRP 06/134354, especialista em psicologia perinatal e acolhimento de adolescentes, mulheres e famílias em São Paulo"
+                alt="Psicóloga Danielle Robertis de Vincenzo"
                 width={800}
-                height={1200}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="rounded-lg shadow-xl w-full object-cover aspect-[3/4] md:aspect-[4/5]"
+                height={1000}
+                sizes="(max-width: 768px) 100vw, 38vw"
+                className="w-full object-cover aspect-square"
                 priority
               />
-              <figcaption className="sr-only">
-                Psicóloga Danielle Vincenzo em ambiente profissional
+              <figcaption className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/55 to-transparent text-white">
+                <div className="text-sm font-semibold leading-tight">Danielle Robertis de Vincenzo</div>
+                <div className="text-[11px] text-white/80 leading-tight">CRP 06/134354</div>
               </figcaption>
             </figure>
 
-            {/* Professional badge */}
-            <div className="absolute -bottom-4 md:-right-4 left-1/2 md:left-auto transform md:transform-none -translate-x-1/2 md:translate-x-0 bg-white shadow-lg rounded-full py-2 px-4 flex items-center gap-2 z-20">
-              <span className="bg-green/10 p-2 rounded-full">
-                <Award className="w-4 h-4 text-green" />
-              </span>
-              <span className="text-sm font-medium">CRP 06/134354</span>
+            <div className="mt-4 rounded-xl border border-[#E3ECE7] bg-[#F6FBF8] p-4">
+              <div className="flex gap-3">
+                <div className="mt-0.5 h-6 w-6 rounded-full bg-green/10 flex items-center justify-center">
+                  <Heart className="w-3.5 h-3.5 text-green" aria-hidden="true"/>
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-heading">Um pouco mais sobre mim</div>
+                  <p className="mt-1 text-xs text-[#677e77] leading-relaxed">
+                    Sou mãe do Davi e acredito que a experiência da maternidade
+                    me trouxe uma compreensão ainda mais profunda sobre os
+                    desafios e as transformações dessa jornada.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="order-1 md:order-2 space-y-6 animate-fade-in">
-            <h3 className="heading-md mb-4">Prazer, sou Danielle Vincenzo</h3>
-            <p className="mb-5 text-gray-700">
-              Psicóloga clínica especialista em Psicopatologia e Psiquiatria
-              pela Faculdade de Medicina da USP (IPq-FMUSP). Com sólida formação
-              e atuação no Instituto de Psiquiatria do Hospital das Clínicas da
-              FMUSP, desenvolvo atendimentos especializados com uma escuta
-              acolhedora e humanizada.
+          <div>
+            <p className="text-[#677e77] leading-relaxed">
+              Sou <strong className="text-heading">Danielle Robertis de Vincenzo</strong> (CRP
+              06/134354), psicóloga clínica com sólida formação e experiência
+              acadêmica e profissional.
             </p>
-            <p className="mb-8 text-gray-700">
-              Realizo atendimentos para adolescentes, mulheres em todas as fases
-              da maternidade e famílias, com foco no desenvolvimento emocional
-              infantil nos primeiros mil dias de vida. Minha abordagem integra
-              conhecimentos de psicologia perinatal, saúde da mulher e
-              psicopatologia, visando promover o bem-estar emocional e o
-              fortalecimento de vínculos familiares.
+            <p className="mt-4 text-[#677e77] leading-relaxed">
+              Atuo como psicóloga no ambulatório de gestantes e puérperas do
+              Instituto de Psiquiatria do Hospital das Clínicas da FMUSP
+              (IPq‑FMUSP), onde desenvolvo experiência em saúde mental,
+              psicopatologia e acompanhamento de demandas emocionais
+              relacionadas à maternidade, parentalidade e adoção.
             </p>
-          </div>
-        </div>
+            <p className="mt-4 text-[#677e77] leading-relaxed">
+              Tenho trajetória de 4 anos como docente na Pós‑Graduação da
+              Faculdade de Medicina da Universidade de São Paulo (FMUSP), nas
+              áreas de vínculo materno, adoção e desenvolvimento
+              infantojuvenil, contribuindo para a formação de profissionais e a
+              produção de conhecimento científico nessas áreas.
+            </p>
+            <p className="mt-4 text-[#677e77] leading-relaxed">
+              Minha experiência reúne a prática clínica, o ensino, a pesquisa e
+              a produção científica, sempre com foco na promoção do bem‑estar
+              emocional, na saúde mental perinatal, na saúde da mulher e no
+              fortalecimento dos vínculos familiares.
+            </p>
 
-        {/* Nova seção de Formação e Especialização */}
-        <div className="mt-20 bg-white/60 backdrop-blur rounded-lg p-8 md:p-10 shadow-lg">
-          <h3 className="heading-md mb-8 text-center">
-            Formação e Especialização
-          </h3>
+            <div className="mt-8">
+              <div className="flex items-center gap-2 mb-3">
+                <GraduationCap className="w-4 h-4 text-green" />
+                <h3 className="font-semibold text-heading">Formação Acadêmica</h3>
+              </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-semibold text-green-dark mb-4 flex items-center gap-2">
-                <Award className="w-5 h-5" />
-                Formação Acadêmica
-              </h4>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">Psicologia</span>
-                    <p className="text-sm text-gray-600">
-                      Formação em psicologia perinatal (gestação e pós parto)
-                    </p>
+              <div className="space-y-3">
+                <div className="rounded-xl border border-[#E3ECE7] bg-white p-4">
+                  <div className="text-sm font-medium">
+                    Especialização em Psicopatologia e Saúde Mental
                   </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">
-                      Formação em saúde da mulher
-                    </span>
+                  <div className="text-xs text-[#677e77]">
+                    Instituto de Psiquiatria da Faculdade de Medicina da USP
+                    (IPq‑FMUSP)
                   </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">
-                      Especialização em Perinatalidade
-                    </span>
-                    <p className="text-sm text-gray-600">
-                      Foco no desenvolvimento infantil e vínculos familiares
-                    </p>
+                </div>
+                <div className="rounded-xl border border-[#E3ECE7] bg-white p-4">
+                  <div className="text-sm font-medium">
+                    Formação em Saúde da Mulher e Psicologia Perinatal
                   </div>
-                </li>
-              </ul>
+                  <div className="text-xs text-[#677e77]">
+                    Faculdade de Medicina da USP (FMUSP)
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 grid md:grid-cols-2 gap-3">
+                <div className="rounded-xl border border-[#E3ECE7] bg-[#F6FBF8] p-3 text-sm text-[#677e77] flex items-start gap-2">
+                  <Stethoscope className="w-4 h-4 text-green mt-0.5" />
+                  <span>
+                    Psicóloga no ambulatório de gestantes e puérperas do
+                    IPq‑FMUSP
+                  </span>
+                </div>
+                <div className="rounded-xl border border-[#E3ECE7] bg-[#F6FBF8] p-3 text-sm text-[#677e77] flex items-start gap-2">
+                  <School className="w-4 h-4 text-green mt-0.5" />
+                  <span>
+                    4 anos como docente na Pós‑Graduação da FMUSP
+                  </span>
+                </div>
+                <div className="rounded-xl border border-[#E3ECE7] bg-[#F6FBF8] p-3 text-sm text-[#677e77] flex items-start gap-2">
+                  <BookOpen className="w-4 h-4 text-green mt-0.5" />
+                  <span>
+                    Autora do e‑book “Reconecta: Atendimento de Pacientes sem
+                    Comunicação Verbal”
+                  </span>
+                </div>
+                <div className="rounded-xl border border-[#E3ECE7] bg-[#F6FBF8] p-3 text-sm text-[#677e77] flex items-start gap-2">
+                  <Users className="w-4 h-4 text-green mt-0.5" />
+                  <span>
+                    Especialista em vínculo materno, adoção e desenvolvimento
+                    infantojuvenil
+                  </span>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <h4 className="font-semibold text-green-dark mb-4 flex items-center gap-2">
-                <Star className="w-5 h-5" />
-                Experiência e Atuação
-              </h4>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">
-                      Instituto de Psiquiatria do HC-FMUSP
-                    </span>
-                    <p className="text-sm text-gray-600">
-                      Atuação clínica e desenvolvimento de abordagem humanizada
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">Psicologia Perinatal</span>
-                    <p className="text-sm text-gray-600">
-                      Especialista nos primeiros mil dias de vida
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green mt-1">•</span>
-                  <div>
-                    <span className="font-medium">Saúde da Mulher</span>
-                    <p className="text-sm text-gray-600">
-                      Acompanhamento em todas as fases da maternidade
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 p-6 bg-green/5 rounded-lg border border-green/20">
-            <p className="text-center text-gray-700">
-              <strong className="text-green-dark">
-                Abordagem Integrativa:
-              </strong>{" "}
-              Meu trabalho integra conhecimentos da psicologia perinatal, saúde
-              da mulher e psicopatologia, visando promover o bem-estar emocional
-              e o fortalecimento de vínculos familiares saudáveis em todas as
-              fases da vida.
-            </p>
           </div>
         </div>
       </div>

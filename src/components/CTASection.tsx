@@ -20,7 +20,7 @@ const CTASection = () => {
   return (
     <section
       id="cta"
-      className="bg-gradient-to-br from-green/10 via-white to-cream-light/20 py-20 md:py-28 relative overflow-hidden"
+      className="bg-gradient-to-br from-green/10 via-white to-cream-light/20 relative overflow-hidden"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
@@ -55,7 +55,7 @@ const CTASection = () => {
                         <h4 className="font-medium text-gray-900 mb-1">
                           Resposta rápida
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[#677e77]">
                           Retorno em até 24h úteis após o seu contato para
                           agendarmos sua consulta.
                         </p>
@@ -77,7 +77,7 @@ const CTASection = () => {
                   Inicie sua jornada de bem-estar emocional
                 </h2>
 
-                <p className="text-gray-600 mb-8 max-w-lg">
+                <p className="text-[#677e77] mb-8 max-w-lg">
                   Estou à disposição para acompanhar você em sua jornada de autoconhecimento e transformação. Entre em contato para agendar uma consulta ou esclarecer suas dúvidas sobre o processo terapêutico.
                 </p>
 
@@ -88,7 +88,7 @@ const CTASection = () => {
                     </div>
                     <div>
                       <p className="font-medium">WhatsApp</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-[#677e77]">
                         Resposta rápida via mensagem
                       </p>
                     </div>
@@ -100,7 +100,7 @@ const CTASection = () => {
                     </div>
                     <div>
                       <p className="font-medium">Ligação</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-[#677e77]">
                         Contato direto para dúvidas
                       </p>
                     </div>
@@ -112,7 +112,6 @@ const CTASection = () => {
                     onClick={handleWhatsAppClick}
                     size="lg"
                     className="text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-3 px-8 py-4 text-lg font-semibold"
-                    style={{ backgroundColor: 'rgb(29, 215, 113)' }}
                   >
                     <Send className="w-6 h-6" />
                     Agendar pelo WhatsApp

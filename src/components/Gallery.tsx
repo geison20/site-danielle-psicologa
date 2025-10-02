@@ -44,7 +44,7 @@ const Gallery = () => {
     <section
       id="galeria"
       aria-labelledby="gallery-heading"
-      className="bg-secondary py-16"
+      className="bg-secondary"
     >
       <div className="section-container">
         <div className="flex items-center justify-center gap-2 mb-2">
@@ -53,7 +53,7 @@ const Gallery = () => {
             Galeria do Consultório
           </h2>
         </div>
-        <p className="text-center text-muted-foreground mb-10 max-w-lg mx-auto">
+        <p className="text-center text-[#677e77] mb-10 max-w-lg mx-auto">
           Conheça nosso espaço físico projetado para proporcionar acolhimento e
           conforto durante suas sessões.
         </p>

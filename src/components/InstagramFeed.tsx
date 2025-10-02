@@ -46,7 +46,7 @@ export default function InstagramFeed() {
   return (
     <section
       id="instagram"
-      className="bg-gradient-to-br from-white to-cream-light/20 py-20 md:py-32 relative overflow-hidden"
+      className="bg-gradient-to-br from-white to-cream-light/20 relative overflow-hidden"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-green/5 rounded-full -ml-20 -mt-20"></div>
@@ -59,7 +59,7 @@ export default function InstagramFeed() {
             Instagram
           </span>
           <h2 className="heading-lg mb-5">Acompanhe no Instagram</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-[#677e77] max-w-2xl mx-auto">
             Confira conteúdos sobre psicologia perinatal, maternidade e
             bem-estar emocional.
           </p>

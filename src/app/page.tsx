@@ -5,9 +5,12 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
-import Location from "@/components/Location";
+// import Location from "@/components/Location";
+import Contact from "@/components/Contact";
 import Instagram from "@/components/InstagramFeed";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
+import Values from "@/components/Values";
+import Publications from "@/components/Publications";
 
 export default function Home() {
   return (
@@ -31,11 +34,13 @@ export default function Home() {
       </header>
       <main id="conteudo-principal" className="min-h-screen" role="main">
         <Hero />
+        <Values />
         <Services />
         <About />
+        <Publications />
         <Instagram />
         <Testimonials />
-        <Location />
+        <Contact />
       </main>
       <footer role="contentinfo">
         <Footer />

@@ -3,7 +3,7 @@ import InfiniteTestimonialCarousel from "./InfiniteTestimonialCarousel";
 
 const Testimonials = () => {
   return (
-    <section id="depoimentos" className="py-16">
+    <section id="depoimentos">
       <div>
         <InfiniteTestimonialCarousel />
       </div>

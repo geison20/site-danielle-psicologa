@@ -6,7 +6,10 @@
 @layer base {
   :root {
     --background: 39 100% 97%;
-    --foreground: 240 10% 3.9%;
+    /* Text (body) color: #677e77 */
+    --foreground: 162 10% 45%;
+    /* Heading (titles) color: #364943 */
+    --heading: 161 15% 25%;
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -14,7 +17,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 106 12% 39%;
+    /* Brand primary: #59C0A1 */
+    --primary: 162 45% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 56 100% 96%;
@@ -31,7 +35,7 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 106 12% 39%;
+    --ring: 162 45% 55%;
 
     --radius: 0.5rem;
   }
@@ -52,6 +56,7 @@
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+    color: hsl(var(--heading));
   }
   
   section {
@@ -69,7 +74,7 @@
   }
   
   .heading-lg {
-    @apply text-3xl md:text-4xl font-bold leading-tight;
+    @apply text-[30px] font-bold leading-tight;
   }
   
   .heading-md {

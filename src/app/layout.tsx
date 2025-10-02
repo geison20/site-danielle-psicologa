@@ -5,15 +5,21 @@ import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import StructuredData from "@/components/StructuredData";
 import Hotjar from "@/components/Hotjar";
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+import { Montserrat, Lato } from "next/font/google";
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const lato = Lato({
+  variable: "--font-lato",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
@@ -119,8 +125,7 @@ export default function RootLayout({
         {/* Resource hints para performance */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        {/* next/font realiza carregamento otimizado das fontes */}
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
@@ -130,9 +135,7 @@ export default function RootLayout({
         gaId="G-SS4V5MR9NE"
         {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
       />
-      <body
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${montserrat.variable} ${lato.variable} antialiased`}>
         <Hotjar />
         {children}
         <Analytics />
