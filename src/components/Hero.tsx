@@ -1,56 +1,36 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { sendGAEvent } from "@next/third-parties/google";
+import heroImg from "../../public/images/hero/opcao_capa_1.jpg";
 
 const Hero = () => {
-  const handleWhatsAppClick = () => {
-    sendGAEvent("event", "WhatsAppClick", {
-      event_category: "engagement",
-      event_label: "hero_section",
-    });
-    const message = encodeURIComponent(
-      "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
-    );
-    window.open(
-      `https://wa.me/5511964556323?text=${message}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    const update = () => {
-      const nav = document.querySelector(
-        'nav[aria-label="Navegação principal"]'
-      ) as HTMLElement | null;
-      setHeaderHeight(nav?.offsetHeight ?? 0);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+  const whatsappHref = `https://wa.me/5511964556323?text=${encodeURIComponent(
+    "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
+  )}`;
 
   return (
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative flex items-center justify-center text-center overflow-hidden"
-      style={{
-        backgroundImage: "url(/danielle-robertis-psicologa.jpeg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: `calc(100vh - ${headerHeight}px)`,
-        marginTop: headerHeight,
-      }}
+      className="relative flex items-center justify-center text-center overflow-hidden min-h-screen pt-24"
     >
-      {/* Overlay de cor para o efeito visto na imagem */}
-      <div className="absolute inset-0 bg-green/70" aria-hidden="true" />
+      {/* Imagem otimizada pelo Next */}
+      <Image
+        src={heroImg}
+        alt="Psicóloga Danielle Robertis de Vincenzo"
+        fill
+        priority
+        placeholder="blur"
+        sizes="100vw"
+        className="object-cover object-center"
+      />
 
-      <div className="section-container relative z-10">
+      {/* Overlay de cor para o efeito visto na imagem */}
+      <div
+        className="absolute inset-0 bg-green-dark/80 z-10"
+        aria-hidden="true"
+      />
+
+      <div className="section-container relative z-20">
         <div className="mx-auto max-w-5xl space-y-6 md:space-y-8">
           <h1
             id="hero-heading"
@@ -64,34 +44,28 @@ const Hero = () => {
           </p>
 
           <p className="mx-auto max-w-3xl text-base md:text-lg text-white/85 leading-relaxed">
-            Psicóloga Clínica | Especialista em Psicopatologia, Saúde da Mulher e Psicologia Perinatal pela Faculdade de Medicina da USP (IPq-FMUSP)
+            Psicóloga Clínica | Especialista em Psicopatologia, Saúde da Mulher
+            e Psicologia Perinatal pela Faculdade de Medicina da USP (IPq-FMUSP)
           </p>
 
           <p className="text-white/80">CRP 06/134354</p>
 
-          <div className="flex items-center justify-center gap-4 pt-2">
+          <div className="pt-2 w-full">
             <Button
-              onClick={handleWhatsAppClick}
+              asChild
               size="lg"
-              className="px-6 py-5 text-base font-semibold rounded-xl"
-              aria-label="Agendar consulta pelo WhatsApp"
-              title="Agende sua consulta pelo WhatsApp"
+              className="w-full px-6 py-5 text-base font-semibold rounded-xl bg-white text-heading hover:bg-white/90 shadow-lg hover:shadow-xl focus-visible:ring-white focus-visible:ring-offset-2"
             >
-              Agendar Consulta
-            </Button>
-            <a
-              href="#instagram"
-              aria-label="Abrir publicações no Instagram"
-              title="Instagram"
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="px-6 py-5 text-base rounded-xl border-white text-white bg-transparent hover:bg-white/10"
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Agendar consulta pelo WhatsApp"
+                title="Agende sua consulta pelo WhatsApp"
               >
-                Instagram
-              </Button>
-            </a>
+                Agendar Consulta
+              </a>
+            </Button>
           </div>
         </div>
       </div>

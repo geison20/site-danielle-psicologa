@@ -1,24 +1,23 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
-import StructuredData from "@/components/StructuredData";
-import Hotjar from "@/components/Hotjar";
 import { Montserrat, Lato } from "next/font/google";
+import StructuredData from "@/components/StructuredData";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
 });
 
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "700", "900"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -114,6 +113,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -136,7 +137,6 @@ export default function RootLayout({
         {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
       />
       <body className={`${montserrat.variable} ${lato.variable} antialiased`}>
-        <Hotjar />
         {children}
         <Analytics />
       </body>

@@ -1,21 +1,9 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { MessageSquare, ArrowRight, Clock, Phone, Send } from "lucide-react";
 import Image from "next/image";
-import { sendGAEvent } from "@next/third-parties/google";
 
 const CTASection = () => {
   const isMobile = false;
-
-  const handleWhatsAppClick = () => {
-    sendGAEvent("event", "WhatsAppClick", {
-      event_category: "engagement",
-      event_label: "cta_section"
-    });
-    const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
-    window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <section
@@ -108,14 +96,17 @@ const CTASection = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    onClick={handleWhatsAppClick}
-                    size="lg"
-                    className="text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-3 px-8 py-4 text-lg font-semibold"
-                  >
-                    <Send className="w-6 h-6" />
-                    Agendar pelo WhatsApp
-                    <ArrowRight className="w-5 h-5 ml-1" />
+                  <Button asChild size="lg" className="text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-3 px-8 py-4 text-lg font-semibold">
+                    <a
+                      href={`https://wa.me/5511964556323?text=${encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Agendar consulta pelo WhatsApp"
+                    >
+                      <Send className="w-6 h-6" />
+                      Agendar pelo WhatsApp
+                      <ArrowRight className="w-5 h-5 ml-1" />
+                    </a>
                   </Button>
                 </div>
               </div>

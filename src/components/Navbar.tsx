@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
 import Link from "next/link";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const instagramUrl = "https://instagram.com/danielle.psicologia";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,61 +43,96 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <div role="navigation" className="hidden md:block">
-          <ul className="flex items-center space-x-8">
-            <li>
-              <Link
-                href="#sobre"
-                title="Ir para a seção Sobre"
-                className="text-[#677e77] hover:text-[#364943]"
-              >
-                Sobre
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#servicos"
-                title="Ir para a seção Áreas de Atuação"
-                className="text-[#677e77] hover:text-[#364943]"
-              >
-                Áreas de Atuação
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#instagram"
-                title="Ir para a seção Publicações"
-                className="text-[#677e77] hover:text-[#364943]"
-              >
-                Publicações
-              </Link>
-            </li>
-            <li>
-              <Link href="#location" title="Ir para a seção de Contato">
-                <Button
-                  size="lg"
-                  className="px-6 py-3 text-base rounded-md"
-                  aria-label="Ir para Contato"
-                  title="Contato"
+        <div className="flex items-center gap-4">
+          <div role="navigation" className="hidden md:block">
+            <ul className="flex items-center space-x-8">
+              <li>
+                <Link
+                  href="#sobre"
+                  title="Ir para a seção Sobre"
+                  className="text-[#677e77] hover:text-[#364943]"
                 >
-                  Contato
-                </Button>
-              </Link>
-            </li>
-          </ul>
-        </div>
+                  Sobre
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#servicos"
+                  title="Ir para a seção Áreas de Atuação"
+                  className="text-[#677e77] hover:text-[#364943]"
+                >
+                  Áreas de Atuação
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#instagram"
+                  title="Ir para a seção Publicações"
+                  className="text-[#677e77] hover:text-[#364943]"
+                >
+                  Publicações
+                </Link>
+              </li>
+              <li>
+                <Link href="#location" title="Ir para a seção de Contato">
+                  <Button
+                    size="lg"
+                    className="px-6 py-3 text-base rounded-md"
+                    aria-label="Ir para Contato"
+                    title="Contato"
+                  >
+                    Contato
+                  </Button>
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-[#677e77]"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-          aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="hidden md:inline-flex gap-2 rounded-md border-green text-green hover:bg-green/10 focus-visible:ring-green focus-visible:ring-offset-2"
+          >
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Instagram em nova aba"
+              title="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+              Instagram
+            </a>
+          </Button>
+
+          <Button
+            asChild
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-green hover:bg-green/10 focus-visible:ring-green focus-visible:ring-offset-2"
+          >
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Instagram em nova aba"
+              title="Instagram"
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
+          </Button>
+
+          <button
+            className="md:hidden text-[#677e77]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}

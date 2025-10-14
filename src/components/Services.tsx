@@ -1,9 +1,16 @@
-"use client";
-
 import React from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Baby, Heart, Users, Leaf, BookOpen, User, Brain } from "lucide-react";
+import adolescenciaImg from "../../public/images/news/adolescencia.jpg";
+import perinatalidadeImg from "../../public/images/news/pariental.jpg";
+import lutoPerinatalImg from "../../public/images/news/luto.jpg";
+import relacaoMaeBebeImg from "../../public/images/news/mae_bebe.jpg";
+import acompanhamentoPsiquiatricoImg from "../../public/images/news/psiquiatria.jpg";
+import orientacaoParentalImg from "../../public/images/news/parental.jpg";
+
+import gestacaoPosPartoImg from "../../public/images/services/gestacao-pos-parto.jpg";
+import desenvolvimentoInfantilImg from "../../public/images/services/desenvolvimento-infantil.jpg";
 
 const Services = () => {
   const services = [
@@ -13,7 +20,7 @@ const Services = () => {
       description:
         "Acompanhamento de mulheres e casais em processos de gestação, adoção e parentalidade.",
       image: {
-        src: "/images/services/perinatalidade.jpg",
+        src: perinatalidadeImg,
         alt: "Mulher grávida com mãos apoiadas na barriga",
       },
     },
@@ -23,7 +30,7 @@ const Services = () => {
       description:
         "Experiências em demandas emocionais relacionadas à gravidez, identidade materna e adaptação à maternidade.",
       image: {
-        src: "/images/services/gestacao-pos-parto.jpg",
+        src: gestacaoPosPartoImg,
         alt: "Família com recém-nascido no colo",
       },
     },
@@ -33,7 +40,7 @@ const Services = () => {
       description:
         "Estudos e práticas voltadas à construção de vínculos seguros nos primeiros anos de vida.",
       image: {
-        src: "/images/services/relacao-mae-bebe.jpg",
+        src: relacaoMaeBebeImg,
         alt: "Mãe e bebê em contato afetuoso",
       },
     },
@@ -43,7 +50,7 @@ const Services = () => {
       description:
         "Experiência em acolhimento de perdas gestacionais e neonatais.",
       image: {
-        src: "/images/services/luto-perinatal.jpg",
+        src: lutoPerinatalImg,
         alt: "Flor branca representando delicadeza",
       },
     },
@@ -53,7 +60,7 @@ const Services = () => {
       description:
         "Atuação e docência voltadas ao sono, rotina saudável e neurodesenvolvimento infantil.",
       image: {
-        src: "/images/services/desenvolvimento-infantil.jpg",
+        src: desenvolvimentoInfantilImg,
         alt: "Bebê dormindo tranquilamente",
       },
     },
@@ -63,7 +70,7 @@ const Services = () => {
       description:
         "Acompanhamento de pais em seus desafios emocionais e familiares.",
       image: {
-        src: "/images/services/gestacao-pos-parto.jpg",
+        src: gestacaoPosPartoImg,
         alt: "Pai com bebê no colo",
       },
     },
@@ -73,7 +80,7 @@ const Services = () => {
       description:
         "Experiência em processos de organização e fortalecimento das relações familiares.",
       image: {
-        src: "/images/services/orientacao-parental.jpg",
+        src: orientacaoParentalImg,
         alt: "Pais com criança pequena em ambiente acolhedor",
       },
     },
@@ -83,7 +90,7 @@ const Services = () => {
       description:
         "Vivência clínica no suporte a questões emocionais, de identidade e de relacionamentos.",
       image: {
-        src: "/images/services/adolescencia.jpg",
+        src: adolescenciaImg,
         alt: "Adolescente em retrato",
       },
     },
@@ -93,7 +100,7 @@ const Services = () => {
       description:
         "Parceria de acompanhamento em interface com a psiquiatria, favorecendo adesão e bem‑estar.",
       image: {
-        src: "/images/services/acompanhamento-psiquiatrico.jpg",
+        src: acompanhamentoPsiquiatricoImg,
         alt: "Sala de atendimento terapêutico acolhedora",
       },
     },
@@ -143,10 +150,7 @@ const Services = () => {
   };
 
   return (
-    <section
-      id="servicos"
-      className="bg-white"
-    >
+    <section id="servicos" className="bg-white">
       {/* Schema estruturado para serviços */}
       <script
         type="application/ld+json"
@@ -156,8 +160,8 @@ const Services = () => {
         <header className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
           <h2 className="heading-lg">Áreas de Experiência</h2>
           <p className="mt-2 text-sm text-[#677e77]">
-            Atuação especializada em saúde mental perinatal, vínculos
-            familiares e desenvolvimento emocional
+            Atuação especializada em saúde mental perinatal, vínculos familiares
+            e desenvolvimento emocional
           </p>
         </header>
 
@@ -165,7 +169,11 @@ const Services = () => {
           {services.map((service, index) => {
             const Icon = service.icon as React.ElementType;
             return (
-              <article key={index} className="h-full" aria-label={service.title}>
+              <article
+                key={index}
+                className="h-full"
+                aria-label={service.title}
+              >
                 <Card className="overflow-hidden h-full border-green/15 hover:shadow-md transition-shadow rounded-xl">
                   <div className="relative w-full h-44 md:h-48">
                     <Image
@@ -174,14 +182,13 @@ const Services = () => {
                       fill
                       className="object-cover"
                       sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
-                      priority={index < 2}
                     />
                   </div>
 
                   <div className="p-4 md:p-5 border-t bg-white">
-                    <div className="flex items-start gap-3">
-                      <div className="mt-0.5 inline-flex items-center justify-center w-8 h-8 rounded-full bg-green/10">
-                        <Icon className="w-4 h-4 text-green" aria-hidden="true" />
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green/10 text-green ring-1 ring-green/20">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <div>
                         <h3 className="text-[15px] md:text-base font-semibold text-heading">

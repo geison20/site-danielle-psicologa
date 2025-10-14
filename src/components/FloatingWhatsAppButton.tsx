@@ -1,7 +1,4 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { sendGAEvent } from "@next/third-parties/google";
 
 // Componente do ícone do WhatsApp
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -16,26 +13,20 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const FloatingWhatsAppButton = () => {
-  const handleWhatsAppClick = () => {
-    // Envia evento para o Google Analytics
-    sendGAEvent("event", "WhatsAppClick", {
-      event_category: "engagement",
-      event_label: "floating_button"
-    });
-    
-    // Mesma ação dos botões CTA - abre o WhatsApp
-    const message = encodeURIComponent("Olá, vim pelo site e gostaria de saber mais sobre seus serviços");
-    window.open(`https://wa.me/5511964556323?text=${message}`, "_blank", "noopener,noreferrer");
-  };
+  const href = `https://wa.me/5511964556323?text=${encodeURIComponent(
+    "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
+  )}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <Button
-        onClick={handleWhatsAppClick}
+        asChild
         className="w-14 h-14 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 p-0"
         aria-label="Conversar no WhatsApp"
       >
-        <WhatsAppIcon className="w-6 h-6" />
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          <WhatsAppIcon className="w-6 h-6" />
+        </a>
       </Button>
     </div>
   );
