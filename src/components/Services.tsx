@@ -1,7 +1,17 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { Baby, Heart, Users, Leaf, BookOpen, User, Brain } from "lucide-react";
+import {
+  Baby,
+  Heart,
+  Users,
+  Leaf,
+  BookOpen,
+  User,
+  Brain,
+  Venus,
+  UserRound,
+} from "lucide-react";
 import adolescenciaImg from "../../public/images/news/adolescencia.jpg";
 import perinatalidadeImg from "../../public/images/news/pariental.jpg";
 import lutoPerinatalImg from "../../public/images/news/luto.jpg";
@@ -9,11 +19,34 @@ import relacaoMaeBebeImg from "../../public/images/news/mae_bebe.jpg";
 import acompanhamentoPsiquiatricoImg from "../../public/images/news/psiquiatria.jpg";
 import orientacaoParentalImg from "../../public/images/news/parental.jpg";
 
-import gestacaoPosPartoImg from "../../public/images/services/gestacao-pos-parto.jpg";
+import gestacaoPosPartoImg from "../../public/images/news/gestacao_e_pos_parto.jpeg";
 import desenvolvimentoInfantilImg from "../../public/images/services/desenvolvimento-infantil.jpg";
+import saudeMentalMulherImg from "../../public/images/services/saude-mental-mulher.jpg";
+import psicoterapiaAdultosImg from "../../public/images/news/psicoterapia-adultos.jpg";
+import apoioPaternidade from "../../public/images/news/apoio_paternidade.jpeg";
 
 const Services = () => {
   const services = [
+    {
+      icon: Venus,
+      title: "Atendimento Especializado em Saúde Mental da Mulher",
+      description:
+        "Atenção psicológica voltada à saúde mental da mulher, com foco em autoconhecimento e equilíbrio emocional.",
+      image: {
+        src: saudeMentalMulherImg,
+        alt: "Mulher em sessão de terapia conversando com psicóloga",
+      },
+    },
+    {
+      icon: UserRound,
+      title: "Atendimento de Psicoterapia para Adultos",
+      description:
+        "Atendimento individual para adultos que buscam compreender suas emoções e construir mais equilíbrio e bem-estar.",
+      image: {
+        src: psicoterapiaAdultosImg,
+        alt: "Adulto sentado em sofá durante sessão de psicoterapia",
+      },
+    },
     {
       icon: Heart,
       title: "Perinatalidade e Planejamento Familiar",
@@ -70,7 +103,7 @@ const Services = () => {
       description:
         "Acompanhamento de pais em seus desafios emocionais e familiares.",
       image: {
-        src: gestacaoPosPartoImg,
+        src: apoioPaternidade,
         alt: "Pai com bebê no colo",
       },
     },
