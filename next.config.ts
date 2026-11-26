@@ -2,29 +2,33 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "images.unsplash.com",
-      "source.unsplash.com",
-      "images.pexels.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
     ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [320, 640, 768, 1024, 1280, 1536],
     imageSizes: [48, 96, 160, 240, 360],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "4mb",
+    },
+  },
   async headers() {
     return [
       {
         source: "/images/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Qualquer arquivo estático servido direto da raiz pública
-        source: "/:all*(svg|png|jpg|jpeg|webp|ico|avif)",
         headers: [
           {
             key: "Cache-Control",
@@ -39,15 +43,35 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/sitemap-:path*.xml",
+        source: "/robots.txt",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
       {
-        source: "/robots.txt",
+        source: "/manifest.webmanifest",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
+      {
+        source: "/painel/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+          { key: "Cache-Control", value: "private, no-store" },
+        ],
+      },
+      {
+        source: "/api/painel/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+          { key: "Cache-Control", value: "private, no-store" },
         ],
       },
     ];

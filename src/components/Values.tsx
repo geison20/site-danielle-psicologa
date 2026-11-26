@@ -1,22 +1,19 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Users, Sparkles } from "lucide-react";
+import { Heart, Sparkles, Users } from "lucide-react";
 
 const values = [
   {
     title: "Acolhimento",
-    description: "Um espaço seguro e sem julgamentos para suas emoções",
+    description: "Escuta cuidadosa, sem julgamentos e no seu próprio ritmo.",
     Icon: Heart,
   },
   {
-    title: "Inclusão",
-    description:
-      "Respeito e valorização da diversidade em todas as suas formas",
+    title: "Respeito",
+    description: "Um olhar sensível para sua história, contexto e singularidade.",
     Icon: Users,
   },
   {
     title: "Transformação",
-    description:
-      "Crescimento emocional através do autoconhecimento",
+    description: "Mais consciência para construir escolhas e vínculos saudáveis.",
     Icon: Sparkles,
   },
 ];
@@ -25,47 +22,51 @@ export default function Values() {
   return (
     <section
       aria-labelledby="values-heading"
-      className="bg-gradient-to-b from-cream-light/40 to-transparent"
+      className="relative overflow-hidden bg-cream-light"
     >
-      <div className="section-container">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-green/10 text-green ring-1 ring-green/20">
-            <Heart className="h-6 w-6" />
+      <div
+        className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-green/10 blur-3xl"
+        aria-hidden="true"
+      />
+      <div className="section-container relative">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-16">
+          <div>
+            <span className="eyebrow">
+              <Heart className="h-3.5 w-3.5" />
+              Minha abordagem
+            </span>
+            <h2 id="values-heading" className="heading-lg max-w-[13ch]">
+              Vínculos que acolhem e transformam
+            </h2>
+            <p className="section-lead max-w-xl">
+              O bem-estar emocional começa em um espaço seguro. Cada encontro é
+              conduzido com escuta atenta, respeito à diversidade e cuidado
+              genuíno com a sua história.
+            </p>
           </div>
-          <h2 id="values-heading" className="heading-xl">
-            Construindo Vínculos que Transformam
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground">
-            Acredito que o bem-estar emocional se constrói através de vínculos
-            saudáveis e do acolhimento genuíno em cada fase da vida. Meu
-            trabalho é fundamentado na escuta atenta, no respeito à diversidade
-            e na construção de um espaço seguro para que você possa se
-            expressar e crescer emocionalmente.
-          </p>
-        </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {values.map(({ title, description, Icon }, idx) => (
-            <Card
-              key={idx}
-              className="border-green/15 bg-white/90 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <CardHeader className="items-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green/10 text-green ring-1 ring-green/20">
-                  <Icon className="h-5 w-5" />
+          <div className="grid gap-3 sm:grid-cols-3 lg:gap-4">
+            {values.map(({ title, description, Icon }) => (
+              <article
+                key={title}
+                className="surface-card flex items-start gap-4 p-5 sm:block sm:min-h-52 sm:p-6"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green/10 text-green-dark ring-1 ring-green/15 sm:mb-8">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-                <CardTitle className="font-heading text-xl text-heading">
-                  {title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-base text-foreground">{description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                <div>
+                  <h3 className="font-heading text-lg font-bold text-heading">
+                    {title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-6 text-foreground">
+                    {description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

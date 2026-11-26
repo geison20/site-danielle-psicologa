@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.daniellerobertis.com.br
-
-# Sitemaps
-Sitemap: https://www.daniellerobertis.com.br/sitemap.xml

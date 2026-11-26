@@ -1,87 +1,91 @@
-import React from "react";
+import Link from "next/link";
 import { Instagram, Mail, Phone } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { instagramLabel, instagramUrl, telLink } from "@/lib/contact-links";
+import type { ContactContent } from "@/lib/content-types";
 
-const Footer = () => {
+const footerLinks = [
+  { href: "#servicos", label: "Áreas de atuação" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#publicacoes", label: "Publicações" },
+  { href: "#artigos", label: "Artigos" },
+  { href: "#depoimentos", label: "Depoimentos" },
+];
+
+export default function Footer({ contact }: { contact: ContactContent }) {
   const currentYear = new Date().getFullYear();
 
-  const ContactRow = ({
-    icon: Icon,
-    children,
-  }: {
-    icon: React.ElementType;
-    children: React.ReactNode;
-  }) => (
-    <div className="flex items-center gap-3 text-foreground">
-      <Icon className="h-4 w-4 text-green" aria-hidden="true" />
-      <span>{children}</span>
-    </div>
-  );
-
   return (
-    <div className="bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-12">
-          {/* Coluna: Sobre */}
+    <div className="bg-[#173c32] text-white">
+      <div className="section-container">
+        <div className="grid gap-10 py-12 sm:py-14 md:grid-cols-[1.2fr_0.8fr_1fr]">
           <div>
-            <h3 className="heading-sm mb-3">Danielle Robertis de Vincenzo</h3>
-            <p className="text-foreground/80 leading-relaxed">
-              Psicóloga Clínica especialista em Saúde da Mulher e Psicologia
-              Perinatal
+            <a href="#hero" className="font-heading text-xl font-bold text-white">
+              Danielle Robertis
+            </a>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-white/65">
+              Psicóloga clínica especialista em Saúde da Mulher, Psicopatologia
+              e Psicologia Perinatal.
             </p>
-            <p className="mt-4 text-foreground/70">CRP 06/134354</p>
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-[#b9eadb]">
+              CRP 06/134354
+            </p>
           </div>
 
-          {/* Coluna: Contato */}
-          <div>
-            <h3 className="heading-sm mb-3">Contato</h3>
-            <div className="space-y-3">
-              <ContactRow icon={Phone}>
-                <a
-                  href="tel:+5511964556323"
-                  className="hover:text-green transition-colors"
-                >
-                  (11) 96455-6323
-                </a>
-              </ContactRow>
-              <ContactRow icon={Mail}>
-                <a
-                  href="mailto:danielle.robertis.psicologa@gmail.com"
-                  className="break-all hover:text-green transition-colors"
-                >
-                  danielle.robertis.psicologa@gmail.com
-                </a>
-              </ContactRow>
-            </div>
-          </div>
+          <nav aria-label="Links do rodapé">
+            <h3 className="text-sm font-bold uppercase tracking-[0.12em] !text-white/70">
+              Navegação
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm font-bold text-white/75 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          {/* Coluna: Redes Sociais */}
           <div>
-            <h3 className="heading-sm mb-3">Redes Sociais</h3>
-            <ContactRow icon={Instagram}>
+            <h3 className="text-sm font-bold uppercase tracking-[0.12em] !text-white/70">
+              Contato
+            </h3>
+            <div className="mt-4 space-y-4 text-sm text-white/75">
               <a
-                href="https://www.instagram.com/danielle.psicologia"
+                href={telLink(contact.phone)}
+                className="flex items-center gap-3 transition-colors hover:text-white"
+              >
+                <Phone className="h-4 w-4 text-[#b9eadb]" />
+                {contact.phone}
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="flex min-w-0 items-start gap-3 transition-colors hover:text-white"
+              >
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#b9eadb]" />
+                <span className="break-all">{contact.email}</span>
+              </a>
+              <a
+                href={instagramUrl(contact.instagram)}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="hover:text-green transition-colors"
+                className="flex items-center gap-3 transition-colors hover:text-white"
               >
-                @danielle.psicologia
+                <Instagram className="h-4 w-4 text-[#b9eadb]" />
+                {instagramLabel(contact.instagram)}
               </a>
-            </ContactRow>
+            </div>
           </div>
         </div>
 
-        <Separator className="bg-border" />
-
-        <div className="py-6 text-center text-foreground/70 text-sm">
-          <p>
-            © {currentYear} Danielle Robertis de Vincenzo. Todos os direitos
-            reservados.
-          </p>
+        <div className="border-t border-white/10 py-6 pb-24 text-center text-xs leading-5 text-white/70 sm:pb-6">
+          © {currentYear} Danielle Robertis de Vincenzo. Todos os direitos
+          reservados.
         </div>
       </div>
     </div>
   );
-};
-
-export default Footer;
+}

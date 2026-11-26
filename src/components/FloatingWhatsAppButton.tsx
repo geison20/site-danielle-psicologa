@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { whatsappLink } from "@/lib/contact-links";
+import type { ContactContent } from "@/lib/content-types";
 
 // Componente do ícone do WhatsApp
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -12,20 +14,22 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const FloatingWhatsAppButton = () => {
-  const href = `https://wa.me/5511964556323?text=${encodeURIComponent(
-    "Olá, vim pelo site e gostaria de saber mais sobre seus serviços"
-  )}`;
+const FloatingWhatsAppButton = ({ contact }: { contact: ContactContent }) => {
+  const href = whatsappLink(
+    contact.phone,
+    "Olá, vim pelo site e gostaria de saber mais sobre seus serviços",
+  );
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="safe-bottom fixed right-4 z-40 sm:right-6">
       <Button
         asChild
-        className="w-14 h-14 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 p-0"
+        className="h-12 rounded-full px-4 text-white shadow-xl shadow-heading/20 sm:h-14 sm:w-14 sm:px-0"
         aria-label="Conversar no WhatsApp"
       >
         <a href={href} target="_blank" rel="noopener noreferrer">
-          <WhatsAppIcon className="w-6 h-6" />
+          <WhatsAppIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+          <span className="text-sm font-bold sm:sr-only">Agendar</span>
         </a>
       </Button>
     </div>

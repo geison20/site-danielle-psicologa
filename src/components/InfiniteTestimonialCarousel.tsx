@@ -1,219 +1,81 @@
-"use client";
+import { MoveHorizontal, Quote, Star } from "lucide-react";
+import type { ContentTestimonial } from "@/lib/content-types";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-interface Testimonial {
-  id: number;
-  name: string;
-  date: string;
-  text: string;
-  avatar?: string;
-}
-
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: "Karina Almeida",
-    date: "21 de abr. de 2024",
-    text: "Excelente profissional, indico sem medo. Mt qualificada, atualizada, trabalha com mt amor. Adoro o fato dela tb ser mãe, isso faz total diferença.",
-    avatar: "/lovable-uploads/58634daa-c783-4b47-b22a-e05fffeed5bb.png",
-  },
-  {
-    id: 2,
-    name: "Rafael Santos",
-    date: "15 de mar. de 2024",
-    text: "A Dra. Danielle é uma profissional excepcional! Sua abordagem me ajudou a superar questões que eu carregava há anos. Recomendo de olhos fechados.",
-  },
-  {
-    id: 3,
-    name: "Juliana Costa",
-    date: "02 de mai. de 2024",
-    text: "Encontrei na Danielle o apoio que precisava em um momento muito difícil. Sua empatia e conhecimento fazem toda diferença nas sessões.",
-  },
-  {
-    id: 4,
-    name: "Pedro Oliveira",
-    date: "18 de abr. de 2024",
-    text: "Minha experiência tem sido transformadora! A forma como ela conduz as sessões me ajuda a ter insights valiosos sobre padrões que eu nem percebia.",
-  },
-  {
-    id: 5,
-    name: "Amanda Silva",
-    date: "28 de mar. de 2024",
-    text: "Agradeço todos os dias por ter encontrado a Danielle. Sua sensibilidade e profissionalismo me ajudaram a lidar com minha ansiedade de forma incrível.",
-  },
-  {
-    id: 6,
-    name: "Lucas Mendes",
-    date: "10 de mai. de 2024",
-    text: "Profissional atualizada e humana. Consigo me abrir e falar sobre assuntos difíceis com muita tranquilidade. Recomendo para todos!",
-  },
-  {
-    id: 7,
-    name: "Beatriz Lima",
-    date: "05 de abr. de 2024",
-    text: "As sessões com a Danielle têm sido um verdadeiro presente na minha vida. Ela me ajuda a enxergar soluções onde eu só via problemas.",
-  },
-  {
-    id: 8,
-    name: "Marcos Pereira",
-    date: "22 de mar. de 2024",
-    text: "Sou paciente há quase um ano e posso dizer que minha qualidade de vida melhorou significativamente. Obrigado por todo o suporte!",
-  },
-];
-
-const InfiniteTestimonialCarousel = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const animationRef = useRef<number | null>(null);
-
-  // Função otimizada para animar o carrossel usando requestAnimationFrame
-  const animateCarousel = useCallback(() => {
-    if (!carouselRef.current || !isVisible) return;
-
-    const carousel = carouselRef.current;
-    const scrollWidth = carousel.scrollWidth;
-    const containerWidth = carousel.offsetWidth;
-    const halfScrollWidth = scrollWidth / 2;
-
-    // Aumentar o scroll suavemente
-    if (carousel.scrollLeft >= halfScrollWidth) {
-      // Reset para o início quando chegamos na metade
-      carousel.scrollLeft = 0;
-    } else {
-      // Mover o scroll lentamente (0.5px por frame para melhor desempenho)
-      carousel.scrollLeft += 0.5;
-    }
-
-    // Agendar o próximo frame de animação
-    animationRef.current = requestAnimationFrame(animateCarousel);
-  }, [isVisible]);
-
-  // Observer de interseção para pausar a animação quando fora da tela
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (carouselRef.current) {
-      observer.observe(carouselRef.current);
-    }
-
-    return () => {
-      if (carouselRef.current) {
-        observer.unobserve(carouselRef.current);
-      }
-    };
-  }, []);
-
-  // Gerenciar animação baseado na visibilidade
-  useEffect(() => {
-    if (isVisible) {
-      animationRef.current = requestAnimationFrame(animateCarousel);
-    } else if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-      animationRef.current = null;
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isVisible, animateCarousel]);
-
-  // Preparar itens do carrossel com memoização para evitar re-renderizações
-  const carouselItems = React.useMemo(() => {
-    // Duplicar depoimentos para efeito infinito
-    const doubledTestimonials = [...testimonials, ...testimonials];
-
-    return doubledTestimonials.map((testimonial, index) => (
-      <article
-        key={`${testimonial.id}-${index}`}
-        className="inline-block w-[380px] bg-white rounded-lg p-6 text-[#677e77] shadow-lg border border-green/10"
-        style={{
-          willChange: "transform",
-          translate: "none",
-        }}
-        aria-label={`Depoimento de ${testimonial.name}`}
-      >
-        <div className="flex items-center gap-4 mb-3">
-          <Avatar className="h-12 w-12 border-2 border-green">
-            {testimonial.avatar ? (
-              <AvatarImage
-                src={testimonial.avatar}
-                alt={`Foto de ${testimonial.name}`}
-                width={48}
-                height={48}
-                loading="lazy"
-              />
-            ) : (
-              <AvatarFallback className="bg-green/10 text-green-dark">
-                {testimonial.name
-                  .split(" ")
-                  .map((name) => name[0])
-                  .join("")}
-              </AvatarFallback>
-            )}
-          </Avatar>
-        </div>
-        <div className="flex mb-4">
-          {[...Array(5)].map((_, i) => (
-            <svg
-              key={i}
-              className="w-5 h-5 text-yellow-400 fill-current"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          ))}
-        </div>
-        <blockquote className="whitespace-normal mb-4">
-          “{testimonial.text}”
-        </blockquote>
-        <footer className="flex flex-col">
-          <cite className="not-italic text-[#364943] font-semibold text-lg">
-            {testimonial.name}
-          </cite>
-          <span className="text-[#677e77]/80 text-sm">{testimonial.date}</span>
-        </footer>
-      </article>
-    ));
-  }, []);
-
+export default function InfiniteTestimonialCarousel({
+  testimonials,
+}: {
+  testimonials: ContentTestimonial[];
+}) {
   return (
-    <div className="w-full bg-white py-16">
-      <div className="container mx-auto px-4 mb-8">
-        <h2 className="heading-lg text-center mb-10">
-          O Que Nossos Clientes Dizem
-        </h2>
-      </div>
+    <div className="w-full overflow-hidden bg-white">
+      <div className="section-container">
+        <header className="mb-8 max-w-3xl md:mb-12">
+          <span className="eyebrow">Experiências compartilhadas</span>
+          <h2 id="testimonials-heading" className="heading-lg">
+            O que meus pacientes dizem
+          </h2>
+          <p className="section-lead max-w-2xl">
+            Relatos sobre acolhimento, confiança e os caminhos construídos ao
+            longo do processo terapêutico.
+          </p>
+          <p className="mt-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-green-dark md:hidden">
+            <MoveHorizontal className="h-4 w-4" />
+            Deslize para ler
+          </p>
+        </header>
 
-      <div
-        ref={carouselRef}
-        className="overflow-hidden whitespace-nowrap"
-        aria-label="Carrossel de depoimentos de clientes"
-        style={{
-          scrollBehavior: "auto", // Auto em vez de smooth para melhor performance
-          overscrollBehavior: "none", // Prevenir scroll indesejado
-        }}
-      >
         <div
-          className="inline-flex gap-6 py-4"
-          style={{ willChange: "transform" }} // Otimização para navegadores modernos
+          className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
+          aria-label="Depoimentos de pacientes"
+          role="region"
+          tabIndex={0}
         >
-          {carouselItems}
+          {testimonials.map((testimonial) => (
+            <article
+              key={testimonial.id}
+              className="surface-card flex min-h-[300px] w-[84vw] max-w-[360px] shrink-0 snap-center flex-col p-6 sm:w-[360px] sm:p-7"
+              aria-label={`Depoimento de ${testimonial.name}`}
+            >
+              <div className="flex items-center justify-between">
+                <div
+                  className="flex h-11 w-11 items-center justify-center rounded-xl bg-green/10 text-green-dark"
+                  aria-hidden="true"
+                >
+                  <Quote className="h-5 w-5" />
+                </div>
+                <div
+                  className="flex gap-0.5"
+                  aria-label="5 de 5 estrelas"
+                  role="img"
+                >
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star
+                      key={index}
+                      className="h-4 w-4 fill-[#dcae55] text-[#dcae55]"
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <blockquote className="mt-7 flex-1 text-base leading-7 text-foreground">
+                “{testimonial.text}”
+              </blockquote>
+
+              <footer className="mt-6 border-t border-green/10 pt-5">
+                <cite className="block font-heading text-base font-bold not-italic text-heading">
+                  {testimonial.name}
+                </cite>
+                {testimonial.date && (
+                  <span className="mt-1 block text-xs text-foreground/70">
+                    {testimonial.date}
+                  </span>
+                )}
+              </footer>
+            </article>
+          ))}
         </div>
       </div>
     </div>
   );
-};
-
-export default InfiniteTestimonialCarousel;
+}

@@ -3,8 +3,9 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Montserrat, Lato } from "next/font/google";
+import { Lato, Montserrat } from "next/font/google";
 import StructuredData from "@/components/StructuredData";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -21,99 +22,85 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
-  description:
-    "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo. Consultas presenciais na Av. Paulista. CRP 06/134354.",
-  keywords: [
-    "Psicóloga São Paulo",
-    "Psicologia clínica",
-    "Terapia",
-    "Psicóloga especialista",
-    "Acolhimento psicológico",
-    "Psicologia perinatal",
-    "Saúde mental materna",
-    "Psicologia da mulher",
-    "Desenvolvimento infantil",
-    "Terapia familiar",
-    "Adolescência",
-    "Vínculos familiares",
-    "Bem-estar emocional",
-    "São Paulo SP",
-    "Avenida Paulista",
-    "Consultório psicologia",
-    "CRP 06/134354",
-  ],
-  other: {
-    "geo.region": "BR-SP",
-    "geo.placename": "São Paulo",
-    "geo.position": "-23.5616;-46.6563",
-    ICBM: "-23.5616, -46.6563",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-    "max-video-preview": -1,
-    googleBot: "index, follow",
-  },
-  authors: [
-    {
-      name: "Danielle Robertis de Vincenzo",
-      url: "https://www.daniellerobertis.com.br",
-    },
-  ],
-  generator: "Next.js",
+  metadataBase: new URL(siteConfig.url),
+  title: siteConfig.title,
+  description: siteConfig.description,
+  applicationName: siteConfig.shortName,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   category: "healthcare",
-  classification: "psychology",
+  keywords: [
+    "psicóloga em São Paulo",
+    "psicologia perinatal",
+    "saúde mental da mulher",
+    "psicóloga perinatal",
+    "terapia para adultos",
+    "psicoterapia para adolescentes",
+    "orientação parental",
+    "luto perinatal",
+    "desenvolvimento infantil",
+    "saúde mental materna",
+    "psicóloga CRP 06/134354",
+  ],
+  alternates: {
+    canonical: siteConfig.url,
+    languages: {
+      "pt-BR": siteConfig.url,
+    },
+  },
   openGraph: {
-    siteName: "Psicóloga Danielle Vincenzo",
-    locale: "pt-BR",
-    title:
-      "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
-    description:
-      "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo. Consultas presenciais na Av. Paulista. CRP 06/134354.",
     type: "website",
-    url: "https://www.daniellerobertis.com.br",
-    countryName: "Brasil",
-    phoneNumbers: ["+55 11 96455-6323"],
-    emails: ["danielle.robertis.psicologa@gmail.com"],
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.shortName,
+    title: siteConfig.title,
+    description: siteConfig.description,
     images: [
       {
-        url: "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
-        alt: "Psicóloga Danielle Vincenzo",
-        type: "image/jpeg",
-        width: 1200,
-        height: 1200,
+        url: absoluteUrl(siteConfig.image),
+        width: 866,
+        height: 1280,
+        alt: `Retrato profissional de ${siteConfig.name}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "https://www.daniellerobertis.com.br",
+    title: siteConfig.title,
+    description: siteConfig.description,
     creator: "@daniellerobertis",
-    title:
-      "Psicóloga Danielle Vincenzo - São Paulo | Acolhimento Especializado",
-    description:
-      "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo. Consultas presenciais na Av. Paulista. CRP 06/134354.",
-    images: [
-      "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
-    ],
+    images: [absoluteUrl(siteConfig.image)],
   },
-  alternates: {
-    canonical: "https://www.daniellerobertis.com.br",
-    languages: {
-      "pt-BR": "https://www.daniellerobertis.com.br",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
+  },
+  referrer: "strict-origin-when-cross-origin",
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: false,
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#173c32",
+  colorScheme: "light",
 };
-
-export const dynamic = "force-dynamic";
 
 export default function RootLayout({
   children,
@@ -121,23 +108,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang={siteConfig.language}>
       <head>
-        {/* Resource hints para performance */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        {/* next/font realiza carregamento otimizado das fontes */}
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-
-        <StructuredData />
       </head>
-      <GoogleAnalytics
-        gaId="G-SS4V5MR9NE"
-        {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
-      />
-      <body className={`${montserrat.variable} ${lato.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${lato.variable}`}>
+        <StructuredData />
         {children}
+        <GoogleAnalytics
+          gaId="G-SS4V5MR9NE"
+          {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
+        />
         <Analytics />
       </body>
     </html>

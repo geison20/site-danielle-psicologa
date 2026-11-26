@@ -11,223 +11,90 @@ import {
   Brain,
   Venus,
   UserRound,
+  ArrowRight,
+  MoveHorizontal,
 } from "lucide-react";
-import adolescenciaImg from "../../public/images/news/adolescencia.jpg";
-import perinatalidadeImg from "../../public/images/news/pariental.jpg";
-import lutoPerinatalImg from "../../public/images/news/luto.jpg";
-import relacaoMaeBebeImg from "../../public/images/news/mae_bebe.jpg";
-import acompanhamentoPsiquiatricoImg from "../../public/images/news/psiquiatria.jpg";
-import orientacaoParentalImg from "../../public/images/news/parental.jpg";
+import type { ContentService, ServiceIcon } from "@/lib/content-types";
 
-import gestacaoPosPartoImg from "../../public/images/news/gestacao_e_pos_parto.jpeg";
-import desenvolvimentoInfantilImg from "../../public/images/services/desenvolvimento-infantil.jpg";
-import saudeMentalMulherImg from "../../public/images/services/saude-mental-mulher.jpg";
-import psicoterapiaAdultosImg from "../../public/images/news/psicoterapia-adultos.jpg";
-import apoioPaternidade from "../../public/images/news/apoio_paternidade.jpeg";
+const serviceIcons: Record<ServiceIcon, React.ElementType> = {
+  venus: Venus,
+  "user-round": UserRound,
+  heart: Heart,
+  baby: Baby,
+  leaf: Leaf,
+  "book-open": BookOpen,
+  users: Users,
+  user: User,
+  brain: Brain,
+};
 
-const Services = () => {
-  const services = [
-    {
-      icon: Venus,
-      title: "Atendimento Especializado em Saúde Mental da Mulher",
-      description:
-        "Atenção psicológica voltada à saúde mental da mulher, com foco em autoconhecimento e equilíbrio emocional.",
-      image: {
-        src: saudeMentalMulherImg,
-        alt: "Mulher em sessão de terapia conversando com psicóloga",
-      },
-    },
-    {
-      icon: UserRound,
-      title: "Atendimento de Psicoterapia para Adultos",
-      description:
-        "Atendimento individual para adultos que buscam compreender suas emoções e construir mais equilíbrio e bem-estar.",
-      image: {
-        src: psicoterapiaAdultosImg,
-        alt: "Adulto sentado em sofá durante sessão de psicoterapia",
-      },
-    },
-    {
-      icon: Heart,
-      title: "Perinatalidade e Planejamento Familiar",
-      description:
-        "Acompanhamento de mulheres e casais em processos de gestação, adoção e parentalidade.",
-      image: {
-        src: perinatalidadeImg,
-        alt: "Mulher grávida com mãos apoiadas na barriga",
-      },
-    },
-    {
-      icon: Baby,
-      title: "Gestação e Pós-Parto (Puerpério)",
-      description:
-        "Experiências em demandas emocionais relacionadas à gravidez, identidade materna e adaptação à maternidade.",
-      image: {
-        src: gestacaoPosPartoImg,
-        alt: "Família com recém-nascido no colo",
-      },
-    },
-    {
-      icon: Heart,
-      title: "Relação Mãe-Bebê e Vínculo Afetivo",
-      description:
-        "Estudos e práticas voltadas à construção de vínculos seguros nos primeiros anos de vida.",
-      image: {
-        src: relacaoMaeBebeImg,
-        alt: "Mãe e bebê em contato afetuoso",
-      },
-    },
-    {
-      icon: Leaf,
-      title: "Luto Perinatal",
-      description:
-        "Experiência em acolhimento de perdas gestacionais e neonatais.",
-      image: {
-        src: lutoPerinatalImg,
-        alt: "Flor branca representando delicadeza",
-      },
-    },
-    {
-      icon: BookOpen,
-      title: "Desenvolvimento Infantil nos Primeiros Anos",
-      description:
-        "Atuação e docência voltadas ao sono, rotina saudável e neurodesenvolvimento infantil.",
-      image: {
-        src: desenvolvimentoInfantilImg,
-        alt: "Bebê dormindo tranquilamente",
-      },
-    },
-    {
-      icon: Users,
-      title: "Apoio à Paternidade",
-      description:
-        "Acompanhamento de pais em seus desafios emocionais e familiares.",
-      image: {
-        src: apoioPaternidade,
-        alt: "Pai com bebê no colo",
-      },
-    },
-    {
-      icon: Users,
-      title: "Orientação Parental",
-      description:
-        "Experiência em processos de organização e fortalecimento das relações familiares.",
-      image: {
-        src: orientacaoParentalImg,
-        alt: "Pais com criança pequena em ambiente acolhedor",
-      },
-    },
-    {
-      icon: User,
-      title: "Adolescência",
-      description:
-        "Vivência clínica no suporte a questões emocionais, de identidade e de relacionamentos.",
-      image: {
-        src: adolescenciaImg,
-        alt: "Adolescente em retrato",
-      },
-    },
-    {
-      icon: Brain,
-      title: "Pacientes em Tratamento Psiquiátrico",
-      description:
-        "Parceria de acompanhamento em interface com a psiquiatria, favorecendo adesão e bem‑estar.",
-      image: {
-        src: acompanhamentoPsiquiatricoImg,
-        alt: "Sala de atendimento terapêutico acolhedora",
-      },
-    },
-  ];
-
-  // Schema.org para lista de serviços
-  const servicesSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Áreas de Experiência",
-    description:
-      "Atuação especializada em saúde mental perinatal, vínculos familiares e desenvolvimento emocional",
-    provider: {
-      "@type": "Person",
-      name: "Danielle Robertis de Vincenzo",
-      jobTitle: "Psicóloga Clínica",
-      hasCredential: {
-        "@type": "EducationalOccupationalCredential",
-        identifier: "CRP 06/134354",
-      },
-    },
-    itemListElement: services.map((service, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "MedicalProcedure",
-        name: service.title,
-        description: service.description,
-        category: "Psychological Therapy",
-        provider: {
-          "@type": "Person",
-          name: "Danielle Robertis de Vincenzo",
-        },
-        location: {
-          "@type": "Place",
-          name: "Consultório Psicológico Danielle Vincenzo",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Av. Paulista, 1000, cj 101",
-            addressLocality: "São Paulo",
-            addressRegion: "SP",
-            addressCountry: "BR",
-          },
-        },
-      },
-    })),
-  };
+const Services = ({ services }: { services: ContentService[] }) => {
+  if (services.length === 0) return null;
 
   return (
-    <section id="servicos" className="bg-white">
-      {/* Schema estruturado para serviços */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
-      />
+    <section
+      id="servicos"
+      aria-labelledby="services-heading"
+      className="overflow-hidden bg-white"
+    >
       <div className="section-container">
-        <header className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-          <h2 className="heading-lg">Áreas de Experiência</h2>
-          <p className="mt-2 text-sm text-[#677e77]">
-            Atuação especializada em saúde mental perinatal, vínculos familiares
-            e desenvolvimento emocional
+        <header className="mb-8 max-w-3xl md:mb-12">
+          <span className="eyebrow">Como posso ajudar</span>
+          <h2 id="services-heading" className="heading-lg">
+            Áreas de atuação
+          </h2>
+          <p className="section-lead max-w-2xl">
+            Cuidado psicológico especializado para diferentes momentos,
+            relações e desafios emocionais.
+          </p>
+          <p className="mt-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-green-dark md:hidden">
+            <MoveHorizontal className="h-4 w-4" />
+            Deslize para conhecer
           </p>
         </header>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div
+          className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3"
+          aria-label="Áreas de atuação disponíveis"
+          role="region"
+          tabIndex={0}
+        >
           {services.map((service, index) => {
-            const Icon = service.icon as React.ElementType;
+            const Icon = serviceIcons[service.icon] ?? Heart;
             return (
               <article
-                key={index}
-                className="h-full"
+                key={service.id}
+                className="h-full w-[84vw] max-w-[340px] shrink-0 snap-center md:w-auto md:max-w-none"
                 aria-label={service.title}
               >
-                <Card className="overflow-hidden h-full border-green/15 hover:shadow-md transition-shadow rounded-xl">
-                  <div className="relative w-full h-44 md:h-48">
+                <Card className="group h-full overflow-hidden rounded-2xl border-green/15 bg-white shadow-[0_16px_45px_-32px_rgba(34,82,68,0.55)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_-30px_rgba(34,82,68,0.45)]">
+                  <div className="relative h-52 w-full overflow-hidden md:h-48">
                     <Image
-                      src={service.image.src}
-                      alt={service.image.alt}
+                      src={service.imageUrl}
+                      alt={service.imageAlt}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
                     />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-heading/25 to-transparent"
+                      aria-hidden="true"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-green-dark shadow-sm backdrop-blur">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
 
-                  <div className="p-4 md:p-5 border-t bg-white">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green/10 text-green ring-1 ring-green/20">
+                  <div className="border-t border-green/10 bg-white p-5 md:p-6">
+                    <div className="flex items-start gap-3.5">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green/10 text-green-dark ring-1 ring-green/15">
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
-                      <div>
-                        <h3 className="text-[15px] md:text-base font-semibold text-heading">
+                      <div className="min-w-0">
+                        <h3 className="font-heading text-base font-bold leading-snug text-heading md:text-lg">
                           {service.title}
                         </h3>
-                        <p className="mt-1 text-xs md:text-sm text-[#677e77]">
+                        <p className="mt-2 text-sm leading-6 text-foreground">
                           {service.description}
                         </p>
                       </div>
@@ -237,6 +104,24 @@ const Services = () => {
               </article>
             );
           })}
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-green/15 bg-green/5 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-6">
+          <div>
+            <p className="font-heading text-lg font-bold text-heading">
+              Não sabe qual atendimento faz sentido para você?
+            </p>
+            <p className="mt-1 text-sm leading-6 text-foreground">
+              Uma primeira conversa pode ajudar a compreender sua necessidade.
+            </p>
+          </div>
+          <a
+            href="#location"
+            className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl font-bold text-green-dark transition-colors hover:text-heading sm:mt-0 sm:shrink-0"
+          >
+            Fale comigo
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>

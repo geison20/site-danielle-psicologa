@@ -21,18 +21,36 @@ const INSTAGRAM_EMBEDS = [
 <script async src="//www.instagram.com/embed.js"></script>`,
 ];
 
+const INSTAGRAM_SCRIPT_TAG =
+  /\s*<script async src="\/\/www\.instagram\.com\/embed\.js"><\/script>/i;
+
 export default function InstagramFeed() {
   const [startIndex, setStartIndex] = useState(0);
   const total = INSTAGRAM_EMBEDS.length;
 
   // Sempre que o índice mudar, solicitamos ao script do Instagram que reprocesse os embeds
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      (window as any).instgrm?.Embeds?.process
-    ) {
-      (window as any).instgrm.Embeds.process();
+    const instagramWindow = window as Window & {
+      instgrm?: { Embeds?: { process?: () => void } };
+    };
+    const container = document.getElementById("instagram");
+    const labelEmbeds = () => {
+      container
+        ?.querySelectorAll<HTMLIFrameElement>("iframe.instagram-media")
+        .forEach((iframe, index) => {
+          iframe.title = `Publicação ${index + 1} de Danielle no Instagram`;
+        });
+    };
+    const observer = new MutationObserver(labelEmbeds);
+
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
     }
+
+    instagramWindow.instgrm?.Embeds?.process?.();
+    labelEmbeds();
+
+    return () => observer.disconnect();
   }, [startIndex]);
 
   const next = () => setStartIndex((prev) => (prev + 1) % total);
@@ -40,60 +58,98 @@ export default function InstagramFeed() {
 
   // Calcula os 3 posts visíveis considerando loop infinito
   const visible = [0, 1, 2].map(
-    (offset) => INSTAGRAM_EMBEDS[(startIndex + offset) % total]
+    (offset) =>
+      INSTAGRAM_EMBEDS[(startIndex + offset) % total].replace(
+        INSTAGRAM_SCRIPT_TAG,
+        "",
+      )
+        .replaceAll("#3897f0", "#1769aa")
+        .replaceAll("#c9c8cd", "#595861"),
   );
 
   return (
     <section
       id="instagram"
-      className="bg-gradient-to-br from-white to-cream-light/20 relative overflow-hidden"
+      aria-labelledby="instagram-heading"
+      className="relative overflow-hidden bg-cream-light"
     >
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-green/5 rounded-full -ml-20 -mt-20"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-green/10 rounded-full -mr-20 -mb-20 hidden md:block"></div>
+      <div
+        className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-green/10"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-28 -right-24 hidden h-80 w-80 rounded-full bg-green/10 md:block"
+        aria-hidden="true"
+      />
 
       <div className="section-container relative z-10">
-        <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
-          <span className="inline-block px-4 py-1 bg-green/10 text-green-dark rounded-full text-sm font-medium mb-3">
-            <Instagram className="w-4 h-4 inline mr-2" />
-            Instagram
-          </span>
-          <h2 className="heading-lg mb-5">Acompanhe no Instagram</h2>
-          <p className="text-[#677e77] max-w-2xl mx-auto">
+        <div className="mb-8 flex items-end justify-between gap-5 md:mb-12">
+          <div className="max-w-3xl">
+            <span className="eyebrow">
+              <Instagram className="h-3.5 w-3.5" />
+              Conteúdo e informação
+            </span>
+            <h2 id="instagram-heading" className="heading-lg">
+              Acompanhe no Instagram
+            </h2>
+            <p className="section-lead max-w-2xl">
             Confira conteúdos sobre psicologia perinatal, maternidade e
             bem-estar emocional.
-          </p>
+            </p>
+          </div>
+
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prev}
+              className="rounded-full"
+              aria-label="Post anterior"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={next}
+              className="rounded-full"
+              aria-label="Próximo post"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
 
         <div>
-          {/* Botões de navegação */}
-          <div className="flex justify-between mb-8">
+          <div className="mb-4 flex justify-between sm:hidden">
             <Button
-              variant="secondary"
+              variant="outline"
               size="icon"
               onClick={prev}
-              className="bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95"
+              className="rounded-full"
               aria-label="Post anterior"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="h-5 w-5" />
             </Button>
+            <span className="self-center text-xs font-bold uppercase tracking-[0.12em] text-foreground/70">
+              {startIndex + 1} de {total}
+            </span>
             <Button
-              variant="secondary"
+              variant="outline"
               size="icon"
               onClick={next}
-              className="bg-green text-white hover:bg-green-dark shadow-lg rounded-full transition-transform active:scale-95"
+              className="rounded-full"
               aria-label="Próximo post"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="h-5 w-5" />
             </Button>
           </div>
 
-          {/* Área que contém os embeds */}
-          <div className="flex justify-center gap-4 md:gap-6 overflow-hidden">
+          <div className="flex justify-center gap-4 overflow-hidden md:gap-6">
             {visible.map((embedHtml, index) => (
               <div
-                key={index}
-                className={`flex-1 ${
+                key={`${startIndex}-${index}`}
+                className={`min-w-0 flex-1 overflow-hidden rounded-2xl bg-white shadow-[0_16px_45px_-32px_rgba(34,82,68,0.5)] [&_.instagram-media]:!m-0 [&_.instagram-media]:!min-w-0 [&_.instagram-media]:!max-w-none [&_.instagram-media]:!w-full ${
                   index === 1
                     ? "hidden sm:block"
                     : index === 2
@@ -111,13 +167,12 @@ export default function InstagramFeed() {
           </div>
         </div>
 
-        {/* Link para o perfil */}
-        <div className="text-center p-6">
+        <div className="pt-8 text-center">
           <Button
             asChild
             variant="outline"
             size="lg"
-            className="border-green text-green hover:text-green-dark"
+            className="w-full sm:w-auto"
           >
             <a
               href="https://www.instagram.com/danielle.psicologia"

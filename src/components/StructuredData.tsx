@@ -1,138 +1,169 @@
-import React from "react";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
-const StructuredData = () => {
-  // Schema para a psicóloga como pessoa
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Danielle Robertis de Vincenzo",
-    jobTitle: "Psicóloga Clínica",
-    description: "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo",
-    url: "https://www.daniellerobertis.com.br",
-    image: "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
-    telephone: "+55 11 96455-6323",
-    email: "danielle.robertis.psicologa@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Av. Paulista, 1000, cj 101",
-      addressLocality: "São Paulo",
-      addressRegion: "SP",
-      postalCode: "01310-100",
-      addressCountry: "BR"
-    },
-    worksFor: {
-      "@type": "Organization",
-      name: "Consultório Psicológico Danielle Vincenzo"
-    },
-    knowsAbout: [
-      "Psicologia Clínica",
-      "Psicologia Perinatal",
-      "Saúde Mental Materna",
-      "Desenvolvimento Infantil",
-      "Terapia Familiar",
-      "Adolescência",
-      "Acompanhamento Psiquiátrico"
-    ],
-    hasCredential: {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "Professional License",
-      recognizedBy: {
-        "@type": "Organization",
-        name: "Conselho Regional de Psicologia"
+const serviceItems = [
+  [
+    "Atendimento especializado em saúde mental da mulher",
+    "Atenção psicológica voltada à saúde mental da mulher, com foco em autoconhecimento e equilíbrio emocional.",
+  ],
+  [
+    "Psicoterapia para adultos",
+    "Atendimento individual para adultos que buscam compreender suas emoções e construir mais equilíbrio e bem-estar.",
+  ],
+  [
+    "Perinatalidade e planejamento familiar",
+    "Acompanhamento de mulheres e casais em processos de gestação, adoção e parentalidade.",
+  ],
+  [
+    "Gestação e pós-parto",
+    "Acompanhamento de demandas emocionais relacionadas à gravidez, identidade materna e adaptação à maternidade.",
+  ],
+  [
+    "Relação mãe-bebê e vínculo afetivo",
+    "Práticas voltadas à construção de vínculos seguros nos primeiros anos de vida.",
+  ],
+  ["Luto perinatal", "Acolhimento de perdas gestacionais e neonatais."],
+  [
+    "Desenvolvimento infantil nos primeiros anos",
+    "Atuação voltada ao sono, rotina saudável e neurodesenvolvimento infantil.",
+  ],
+  ["Apoio à paternidade", "Acompanhamento de pais em seus desafios emocionais e familiares."],
+  [
+    "Orientação parental",
+    "Organização e fortalecimento das relações familiares.",
+  ],
+  [
+    "Psicoterapia para adolescentes",
+    "Suporte a questões emocionais, de identidade e de relacionamentos.",
+  ],
+  [
+    "Acompanhamento em tratamento psiquiátrico",
+    "Acompanhamento psicológico em interface com a psiquiatria.",
+  ],
+] as const;
+
+const personId = `${siteConfig.url}/#person`;
+const practiceId = `${siteConfig.url}/#practice`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: siteConfig.name,
+      jobTitle: "Psicóloga clínica",
+      description:
+        "Psicóloga clínica especialista em saúde mental perinatal, saúde da mulher, adolescência e vínculos familiares.",
+      url: siteConfig.url,
+      image: absoluteUrl(siteConfig.image),
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
+      sameAs: [siteConfig.instagram],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.address.streetAddress,
+        addressLocality: siteConfig.address.addressLocality,
+        addressRegion: siteConfig.address.addressRegion,
+        postalCode: siteConfig.address.postalCode,
+        addressCountry: siteConfig.address.addressCountry,
       },
-      identifier: "CRP 06/134354"
-    }
-  };
-
-  // Schema para o site
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Psicóloga Danielle Vincenzo",
-    url: "https://www.daniellerobertis.com.br",
-    description: "Psicóloga clínica especialista em acolhimento para adolescentes, mulheres e famílias em São Paulo",
-    inLanguage: "pt-BR",
-    author: {
-      "@type": "Person",
-      name: "Danielle Robertis de Vincenzo"
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://www.daniellerobertis.com.br/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  };
-
-  // Schema para o serviço profissional
-  const professionalServiceSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Consultório Psicológico Danielle Vincenzo",
-    image: "https://www.daniellerobertis.com.br/danielle-robertis-psicologa.jpeg",
-    description: "Acolhimento psicológico especializado para adolescentes, mulheres e famílias",
-    url: "https://www.daniellerobertis.com.br",
-    telephone: "+55 11 96455-6323",
-    email: "danielle.robertis.psicologa@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Av. Paulista, 1000, cj 101",
-      addressLocality: "São Paulo",
-      addressRegion: "SP",
-      postalCode: "01310-100",
-      addressCountry: "BR"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: -23.5616,
-      longitude: -46.6563
-    },
-    serviceType: "Psychology Services",
-    provider: {
-      "@type": "Person",
-      name: "Danielle Robertis de Vincenzo",
       hasCredential: {
         "@type": "EducationalOccupationalCredential",
-        identifier: "CRP 06/134354"
-      }
+        credentialCategory: "Professional License",
+        identifier: siteConfig.crp,
+        recognizedBy: {
+          "@type": "Organization",
+          name: "Conselho Regional de Psicologia",
+        },
+      },
+      knowsAbout: [
+        "Psicologia clínica",
+        "Psicologia perinatal",
+        "Saúde mental da mulher",
+        "Saúde mental materna",
+        "Desenvolvimento infantil",
+        "Orientação parental",
+        "Adolescência",
+        "Luto perinatal",
+      ],
     },
-    areaServed: {
-      "@type": "City",
-      name: "São Paulo",
-      addressRegion: "SP",
-      addressCountry: "BR"
+    {
+      "@type": "ProfessionalService",
+      "@id": practiceId,
+      name: "Consultório Psicológico Danielle Robertis",
+      description: siteConfig.description,
+      url: siteConfig.url,
+      image: absoluteUrl(siteConfig.image),
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
+      provider: { "@id": personId },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.address.streetAddress,
+        addressLocality: siteConfig.address.addressLocality,
+        addressRegion: siteConfig.address.addressRegion,
+        postalCode: siteConfig.address.postalCode,
+        addressCountry: siteConfig.address.addressCountry,
+      },
+      areaServed: {
+        "@type": "City",
+        name: "São Paulo",
+        containedInPlace: { "@type": "Country", name: "Brasil" },
+      },
+      availableLanguage: "pt-BR",
     },
-    serviceOutput: "Mental Health Support",
-    category: [
-      "Psicologia Perinatal",
-      "Saúde Mental Materna", 
-      "Desenvolvimento Infantil",
-      "Terapia Familiar",
-      "Adolescência",
-      "Acompanhamento Psiquiátrico"
-    ]
-  };
-
-  return (
-    <>
-      {/* Person Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-      
-      {/* Website Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      
-      {/* Professional Service Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
-      />
-    </>
-  );
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.shortName,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      inLanguage: siteConfig.language,
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/#webpage`,
+      url: siteConfig.url,
+      name: siteConfig.title,
+      description: siteConfig.description,
+      inLanguage: siteConfig.language,
+      isPartOf: { "@id": `${siteConfig.url}/#website` },
+      about: { "@id": personId },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.image),
+        width: 866,
+        height: 1280,
+      },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${siteConfig.url}/#services`,
+      name: "Áreas de atuação em psicologia",
+      description:
+        "Serviços de psicologia clínica oferecidos por Danielle Robertis de Vincenzo.",
+      itemListElement: serviceItems.map(([name, description], index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name,
+          description,
+          provider: { "@id": practiceId },
+          areaServed: { "@type": "City", name: "São Paulo" },
+        },
+      })),
+    },
+  ],
 };
 
-export default StructuredData;
+export default function StructuredData() {
+  return (
+    <script
+      id="structured-data"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}

@@ -66,7 +66,7 @@ export default {
         green: {
           light: "#A8E3D3",
           DEFAULT: "#59C0A1",
-          dark: "#3A8F7A",
+          dark: "#276F5D",
         },
         cream: {
           light: "rgb(255, 254, 236)",
