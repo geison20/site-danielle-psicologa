@@ -27,6 +27,8 @@ export const siteConfig = {
   },
 } as const;
 
+export const GA_MEASUREMENT_ID = "G-SS4V5MR9NE";
+
 export const absoluteUrl = (path: string) =>
   /^https?:\/\//i.test(path)
     ? path

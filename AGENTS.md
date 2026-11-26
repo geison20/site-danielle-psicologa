@@ -9,6 +9,7 @@
 - Root configs: `next.config.ts`, `tailwind.config.ts`, `tsconfig.json`, `next-sitemap.config.js`.
 
 ## Build, Test, and Development Commands
+- Gerenciador de pacotes: **yarn** (`yarn install`). A Vercel instala com `yarn.lock`; não commite `package-lock.json`.
 - `npm run dev` — Start local dev server with Turbopack.
 - `npm run build` — Production build; triggers `postbuild`.
 - `npm run start` — Serve the built app.

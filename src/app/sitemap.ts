@@ -22,6 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
       images: [absoluteUrl(siteConfig.image)],
     },
+    {
+      url: absoluteUrl("/privacidade"),
+      lastModified: new Date("2026-11-26"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     ...articles,
   ];
 }

@@ -14,6 +14,10 @@ export function getContentImageBlobPrefix(): string {
   return `site-content/${getContentEnvironment()}/images/`;
 }
 
+export function getContentHistoryPrefix(): string {
+  return `site-content/${getContentEnvironment()}/history/`;
+}
+
 export function contentImageUrl(pathname: string): string {
   const encodedPath = pathname
     .split("/")

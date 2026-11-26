@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
+import { saveConsent, useConsent } from "@/lib/cookie-consent";
 
 // Códigos de incorporação completos do Instagram - apenas cole aqui
 const INSTAGRAM_EMBEDS = [
@@ -24,12 +25,16 @@ const INSTAGRAM_EMBEDS = [
 const INSTAGRAM_SCRIPT_TAG =
   /\s*<script async src="\/\/www\.instagram\.com\/embed\.js"><\/script>/i;
 
-export default function InstagramFeed() {
+export default function InstagramFeed({ profileUrl }: { profileUrl: string }) {
   const [startIndex, setStartIndex] = useState(0);
+  // Os embeds são da Meta (Instagram) e só carregam depois do consentimento.
+  const allowed = useConsent() === "accepted";
   const total = INSTAGRAM_EMBEDS.length;
 
   // Sempre que o índice mudar, solicitamos ao script do Instagram que reprocesse os embeds
   useEffect(() => {
+    if (!allowed) return;
+
     const instagramWindow = window as Window & {
       instgrm?: { Embeds?: { process?: () => void } };
     };
@@ -51,20 +56,17 @@ export default function InstagramFeed() {
     labelEmbeds();
 
     return () => observer.disconnect();
-  }, [startIndex]);
+  }, [startIndex, allowed]);
 
   const next = () => setStartIndex((prev) => (prev + 1) % total);
   const prev = () => setStartIndex((prev) => (prev - 1 + total) % total);
 
   // Calcula os 3 posts visíveis considerando loop infinito
-  const visible = [0, 1, 2].map(
-    (offset) =>
-      INSTAGRAM_EMBEDS[(startIndex + offset) % total].replace(
-        INSTAGRAM_SCRIPT_TAG,
-        "",
-      )
-        .replaceAll("#3897f0", "#1769aa")
-        .replaceAll("#c9c8cd", "#595861"),
+  const visible = [0, 1, 2].map((offset) =>
+    INSTAGRAM_EMBEDS[(startIndex + offset) % total]
+      .replace(INSTAGRAM_SCRIPT_TAG, "")
+      .replaceAll("#3897f0", "#1769aa")
+      .replaceAll("#c9c8cd", "#595861"),
   );
 
   return (
@@ -93,12 +95,12 @@ export default function InstagramFeed() {
               Acompanhe no Instagram
             </h2>
             <p className="section-lead max-w-2xl">
-            Confira conteúdos sobre psicologia perinatal, maternidade e
-            bem-estar emocional.
+              Confira conteúdos sobre psicologia perinatal, maternidade e
+              bem-estar emocional.
             </p>
           </div>
 
-          <div className="hidden shrink-0 gap-2 sm:flex">
+          <div className={allowed ? "hidden shrink-0 gap-2 sm:flex" : "hidden"}>
             <Button
               variant="outline"
               size="icon"
@@ -120,52 +122,73 @@ export default function InstagramFeed() {
           </div>
         </div>
 
-        <div>
-          <div className="mb-4 flex justify-between sm:hidden">
+        {!allowed ? (
+          <div className="rounded-2xl border border-green/15 bg-white p-6 text-center shadow-[0_16px_45px_-32px_rgba(34,82,68,0.5)] sm:p-10">
+            <Instagram
+              className="mx-auto h-7 w-7 text-green-dark"
+              aria-hidden="true"
+            />
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-foreground sm:text-base sm:leading-7">
+              As publicações vêm diretamente do Instagram, um serviço de
+              terceiros que pode usar cookies. Para exibi-las aqui, aceite os
+              cookies do site, ou acesse o perfil diretamente.
+            </p>
             <Button
-              variant="outline"
-              size="icon"
-              onClick={prev}
-              className="rounded-full"
-              aria-label="Post anterior"
+              type="button"
+              className="mt-5 w-full sm:w-auto"
+              onClick={() => saveConsent("accepted")}
             >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <span className="self-center text-xs font-bold uppercase tracking-[0.12em] text-foreground/70">
-              {startIndex + 1} de {total}
-            </span>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={next}
-              className="rounded-full"
-              aria-label="Próximo post"
-            >
-              <ChevronRight className="h-5 w-5" />
+              Aceitar cookies e ver publicações
             </Button>
           </div>
-
-          <div className="flex justify-center gap-4 overflow-hidden md:gap-6">
-            {visible.map((embedHtml, index) => (
-              <div
-                key={`${startIndex}-${index}`}
-                className={`min-w-0 flex-1 overflow-hidden rounded-2xl bg-white shadow-[0_16px_45px_-32px_rgba(34,82,68,0.5)] [&_.instagram-media]:!m-0 [&_.instagram-media]:!min-w-0 [&_.instagram-media]:!max-w-none [&_.instagram-media]:!w-full ${
-                  index === 1
-                    ? "hidden sm:block"
-                    : index === 2
-                    ? "hidden lg:block"
-                    : ""
-                }`}
+        ) : (
+          <div>
+            <div className="mb-4 flex justify-between sm:hidden">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prev}
+                className="rounded-full"
+                aria-label="Post anterior"
               >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <span className="self-center text-xs font-bold uppercase tracking-[0.12em] text-foreground/70">
+                {startIndex + 1} de {total}
+              </span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={next}
+                className="rounded-full"
+                aria-label="Próximo post"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </div>
+
+            <div className="flex justify-center gap-4 overflow-hidden md:gap-6">
+              {visible.map((embedHtml, index) => (
                 <div
-                  dangerouslySetInnerHTML={{
-                    __html: embedHtml,
-                  }}
-                />
-              </div>
-            ))}
+                  key={`${startIndex}-${index}`}
+                  className={`min-w-0 flex-1 overflow-hidden rounded-2xl bg-white shadow-[0_16px_45px_-32px_rgba(34,82,68,0.5)] [&_.instagram-media]:!m-0 [&_.instagram-media]:!min-w-0 [&_.instagram-media]:!max-w-none [&_.instagram-media]:!w-full ${
+                    index === 1
+                      ? "hidden sm:block"
+                      : index === 2
+                        ? "hidden lg:block"
+                        : ""
+                  }`}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: embedHtml,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="pt-8 text-center">
           <Button
@@ -175,7 +198,7 @@ export default function InstagramFeed() {
             className="w-full sm:w-auto"
           >
             <a
-              href="https://www.instagram.com/danielle.psicologia"
+              href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"
@@ -188,7 +211,12 @@ export default function InstagramFeed() {
       </div>
 
       {/* Script de embed carregado apenas uma vez */}
-      <Script src="https://www.instagram.com/embed.js" strategy="lazyOnload" />
+      {allowed && (
+        <Script
+          src="https://www.instagram.com/embed.js"
+          strategy="lazyOnload"
+        />
+      )}
     </section>
   );
 }

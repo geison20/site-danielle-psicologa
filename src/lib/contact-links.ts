@@ -1,4 +1,5 @@
 import type { ContactContent } from "@/lib/content-types";
+import { siteConfig } from "@/lib/site";
 
 /** Devolve o telefone com DDI (ex.: 5511964556323) ou null se for inválido. */
 export function phoneDigits(value: string): string | null {
@@ -46,4 +47,32 @@ export function mapsLink(
 ): string {
   const query = `${contact.addressLine1} ${contact.addressLine2}`.trim();
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+/**
+ * Extrai bairro/cidade/UF/CEP da segunda linha do endereço, no formato
+ * "Bairro, Cidade — UF · CEP 00000-000". O que não for reconhecido usa os
+ * valores padrão do site.
+ */
+export function parseAddress(
+  contact: Pick<ContactContent, "addressLine1" | "addressLine2">,
+): {
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+} {
+  const fallback = siteConfig.address;
+  const line = contact.addressLine2;
+
+  const cep = line.match(/\b(\d{5})-?(\d{3})\b/);
+  const cityAndState = line.match(/^(.*?)\s*[—–-]\s*([A-Za-z]{2})\b/);
+  const locality = cityAndState?.[1].split(",").pop()?.trim();
+
+  return {
+    streetAddress: contact.addressLine1,
+    addressLocality: locality || fallback.addressLocality,
+    addressRegion: cityAndState?.[2].toUpperCase() ?? fallback.addressRegion,
+    postalCode: cep ? `${cep[1]}-${cep[2]}` : fallback.postalCode,
+  };
 }

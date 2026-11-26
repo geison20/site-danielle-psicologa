@@ -9,8 +9,66 @@ import {
   Trash2,
   UploadCloud,
 } from "lucide-react";
-import { type ChangeEvent, type ReactNode, useState } from "react";
+import {
+  type ChangeEvent,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { Button } from "@/components/ui/button";
+
+const dirtyForms = new Set<string>();
+
+/** Há formulário com alterações ainda não publicadas? `prefix` filtra por tipo ("drawer:", "section:"). */
+export function hasUnsavedChanges(prefix = ""): boolean {
+  return [...dirtyForms].some((id) => id.startsWith(prefix));
+}
+
+function useUnsavedGuard(id: string, dirty: boolean) {
+  useEffect(() => {
+    if (dirty) dirtyForms.add(id);
+    else dirtyForms.delete(id);
+    return () => {
+      dirtyForms.delete(id);
+    };
+  }, [id, dirty]);
+}
+
+/** Estado de um formulário de item (gaveta): "sujo" se mudou desde que abriu. */
+export function useDraftState<T extends { id: string }>(
+  initial: T,
+): [T, Dispatch<SetStateAction<T>>, boolean] {
+  const [item, setItem] = useState(initial);
+  const [baseline] = useState(() => JSON.stringify(initial));
+  const dirty = JSON.stringify(item) !== baseline;
+  useUnsavedGuard(`drawer:${initial.id}`, dirty);
+  return [item, setItem, dirty];
+}
+
+/**
+ * Estado de um formulário de seção (Início, Sobre, Contato). Compara com o
+ * valor salvo e, quando o valor salvo muda (salvar ou restaurar versão),
+ * o formulário passa a mostrar o novo valor.
+ */
+export function useSectionState<T>(
+  id: string,
+  saved: T,
+): [T, Dispatch<SetStateAction<T>>, boolean] {
+  const savedJson = JSON.stringify(saved);
+  const [item, setItem] = useState(saved);
+  const [syncedJson, setSyncedJson] = useState(savedJson);
+
+  if (savedJson !== syncedJson) {
+    setSyncedJson(savedJson);
+    setItem(saved);
+  }
+
+  const dirty = JSON.stringify(item) !== savedJson;
+  useUnsavedGuard(`section:${id}`, dirty);
+  return [item, setItem, dirty];
+}
 
 export const inputClassName =
   "mt-2 min-h-12 w-full rounded-xl border border-green/25 bg-white px-4 text-base text-heading outline-none transition placeholder:text-foreground/45 focus:border-green focus:ring-2 focus:ring-green/20 disabled:bg-cream-dark/45 disabled:text-foreground/60";

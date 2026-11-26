@@ -13,10 +13,16 @@ import {
 } from "@/lib/admin-auth";
 import {
   ContentConflictError,
+  getContentVersion,
+  listContentVersions,
   persistSiteContent,
   SITE_CONTENT_CACHE_TAG,
 } from "@/lib/content-store";
-import type { SiteContent, SiteContentSnapshot } from "@/lib/content-types";
+import type {
+  ContentVersion,
+  SiteContent,
+  SiteContentSnapshot,
+} from "@/lib/content-types";
 
 const LOGIN_WINDOW_MS = 15 * 60 * 1_000;
 const MAX_LOGIN_ATTEMPTS = 6;
@@ -98,6 +104,11 @@ export async function logoutAction(): Promise<never> {
   redirect("/painel/login");
 }
 
+function revalidateSite() {
+  revalidateTag(SITE_CONTENT_CACHE_TAG);
+  revalidatePath("/", "layout");
+}
+
 export type SaveContentResult =
   | { ok: true; snapshot: SiteContentSnapshot; message: string }
   | { ok: false; message: string };
@@ -121,10 +132,7 @@ export async function saveContentAction(input: {
 
   try {
     const snapshot = await persistSiteContent(input.content, input.etag);
-    revalidateTag(SITE_CONTENT_CACHE_TAG);
-    revalidatePath("/", "page");
-    revalidatePath("/artigos/[slug]", "page");
-    revalidatePath("/sitemap.xml");
+    revalidateSite();
     return { ok: true, snapshot, message: "Alterações publicadas." };
   } catch (error) {
     if (error instanceof ContentConflictError) {
@@ -136,5 +144,67 @@ export async function saveContentAction(input: {
       ok: false,
       message: error instanceof Error ? error.message : "Não foi possível salvar.",
     };
+  }
+}
+
+export type ListVersionsResult =
+  | { ok: true; versions: ContentVersion[] }
+  | { ok: false; message: string };
+
+export async function listVersionsAction(): Promise<ListVersionsResult> {
+  if (!(await getAdminSession())) {
+    return { ok: false, message: "Sua sessão expirou. Entre novamente." };
+  }
+
+  try {
+    return { ok: true, versions: await listContentVersions() };
+  } catch (error) {
+    console.error("Não foi possível listar o histórico.", error);
+    return { ok: false, message: "Não foi possível carregar o histórico." };
+  }
+}
+
+const versionDateFormat = new Intl.DateTimeFormat("pt-BR", {
+  dateStyle: "short",
+  timeStyle: "short",
+  timeZone: "America/Sao_Paulo",
+});
+
+export async function restoreVersionAction(input: {
+  id: string;
+  etag: string | null;
+}): Promise<SaveContentResult> {
+  if (!(await getAdminSession())) {
+    return { ok: false, message: "Sua sessão expirou. Entre novamente." };
+  }
+
+  if (
+    !input ||
+    typeof input.id !== "string" ||
+    (input.etag !== null &&
+      (typeof input.etag !== "string" || input.etag.length > 512))
+  ) {
+    return { ok: false, message: "Dados inválidos." };
+  }
+
+  try {
+    const found = await getContentVersion(input.id);
+    if (!found) {
+      return { ok: false, message: "Esta versão não está mais disponível." };
+    }
+
+    const savedAt = versionDateFormat.format(new Date(found.version.savedAt));
+    const snapshot = await persistSiteContent(found.content, input.etag, {
+      changes: [`Restaurou a versão de ${savedAt}`],
+    });
+    revalidateSite();
+    return { ok: true, snapshot, message: `Versão de ${savedAt} restaurada.` };
+  } catch (error) {
+    if (error instanceof ContentConflictError) {
+      return { ok: false, message: error.message };
+    }
+
+    console.error("Não foi possível restaurar a versão.", error);
+    return { ok: false, message: "Não foi possível restaurar esta versão." };
   }
 }

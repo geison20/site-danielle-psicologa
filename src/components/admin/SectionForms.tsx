@@ -1,7 +1,7 @@
 "use client";
 
 import { LoaderCircle, Plus, Trash2 } from "lucide-react";
-import { type FormEvent, type ReactNode, useState } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DrawerActions,
@@ -10,6 +10,8 @@ import {
   Toggle,
   inputClassName,
   textareaClassName,
+  useDraftState,
+  useSectionState,
 } from "@/components/admin/fields";
 import {
   SERVICE_ICONS,
@@ -38,6 +40,7 @@ function SectionPanel({
   description,
   busy,
   disabled,
+  dirty,
   onSubmit,
   children,
 }: {
@@ -45,6 +48,7 @@ function SectionPanel({
   description: string;
   busy: boolean;
   disabled?: boolean;
+  dirty: boolean;
   onSubmit: () => Promise<void>;
   children: ReactNode;
 }) {
@@ -63,7 +67,12 @@ function SectionPanel({
         <p className="mt-1 text-sm leading-6 text-foreground/75">{description}</p>
       </div>
       {children}
-      <div className="flex justify-end border-t border-green/10 pt-5">
+      <div className="flex flex-col gap-3 border-t border-green/10 pt-5 sm:flex-row sm:items-center sm:justify-end">
+        {dirty && (
+          <p role="status" className="text-sm font-bold text-amber-800">
+            Você tem alterações que ainda não foram publicadas.
+          </p>
+        )}
         <Button
           type="submit"
           size="lg"
@@ -87,7 +96,7 @@ export function HeroForm({
   busy: boolean;
   onSave: (value: HeroContent) => Promise<void>;
 }) {
-  const [item, setItem] = useState(value);
+  const [item, setItem, dirty] = useSectionState("hero", value);
 
   function update<K extends keyof HeroContent>(key: K, next: HeroContent[K]) {
     setItem((current) => ({ ...current, [key]: next }));
@@ -98,6 +107,7 @@ export function HeroForm({
       title="Início do site"
       description="É a primeira coisa que as pessoas veem ao abrir o site."
       busy={busy}
+      dirty={dirty}
       disabled={!item.imageUrl}
       onSubmit={() => onSave(item)}
     >
@@ -149,7 +159,7 @@ export function AboutForm({
   busy: boolean;
   onSave: (value: AboutContent) => Promise<void>;
 }) {
-  const [item, setItem] = useState(value);
+  const [item, setItem, dirty] = useSectionState("about", value);
 
   function update<K extends keyof AboutContent>(key: K, next: AboutContent[K]) {
     setItem((current) => ({ ...current, [key]: next }));
@@ -169,6 +179,7 @@ export function AboutForm({
       title="Sobre você"
       description="Sua foto, sua história e sua formação."
       busy={busy}
+      dirty={dirty}
       disabled={!item.photoUrl}
       onSubmit={() => onSave(item)}
     >
@@ -305,7 +316,7 @@ export function ContactForm({
   busy: boolean;
   onSave: (value: ContactContent) => Promise<void>;
 }) {
-  const [item, setItem] = useState(value);
+  const [item, setItem, dirty] = useSectionState("contact", value);
 
   function update<K extends keyof ContactContent>(key: K, next: ContactContent[K]) {
     setItem((current) => ({ ...current, [key]: next }));
@@ -316,6 +327,7 @@ export function ContactForm({
       title="Contato e endereço"
       description="Vale para o site inteiro: botões de WhatsApp, rodapé e seção de contato."
       busy={busy}
+      dirty={dirty}
       onSubmit={() => onSave(item)}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -361,7 +373,10 @@ export function ContactForm({
           className={inputClassName}
         />
       </Field>
-      <Field label="Bairro, cidade e CEP">
+      <Field
+        label="Bairro, cidade e CEP"
+        hint="Use este formato para o Google entender: Bairro, Cidade — UF · CEP 00000-000"
+      >
         <input
           value={item.addressLine2}
           onChange={(event) => update("addressLine2", event.target.value)}
@@ -385,7 +400,7 @@ export function ServiceForm({
   onCancel: () => void;
   onSave: (item: ContentService) => Promise<void>;
 }) {
-  const [item, setItem] = useState(initialItem);
+  const [item, setItem] = useDraftState(initialItem);
 
   function update<K extends keyof ContentService>(key: K, next: ContentService[K]) {
     setItem((current) => ({ ...current, [key]: next }));
@@ -470,7 +485,7 @@ export function TestimonialForm({
   onCancel: () => void;
   onSave: (item: ContentTestimonial) => Promise<void>;
 }) {
-  const [item, setItem] = useState(initialItem);
+  const [item, setItem] = useDraftState(initialItem);
 
   function update<K extends keyof ContentTestimonial>(
     key: K,

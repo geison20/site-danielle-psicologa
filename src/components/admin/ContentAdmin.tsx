@@ -9,6 +9,7 @@ import {
   ExternalLink,
   FileText,
   HeartHandshake,
+  History,
   House,
   LoaderCircle,
   LogOut,
@@ -19,9 +20,10 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import {
   logoutAction,
+  restoreVersionAction,
   saveContentAction,
 } from "@/app/painel/actions";
 import {
@@ -31,7 +33,9 @@ import {
   ItemActions,
   StatusBadge,
   Toggle,
+  hasUnsavedChanges,
   inputClassName,
+  useDraftState,
 } from "@/components/admin/fields";
 import {
   AboutForm,
@@ -41,12 +45,16 @@ import {
   ServiceForm,
   TestimonialForm,
 } from "@/components/admin/SectionForms";
+import VersionHistory, {
+  formatVersionDate,
+} from "@/components/admin/VersionHistory";
 import { Button } from "@/components/ui/button";
 import type {
   ContentArticle,
   ContentPublication,
   ContentService,
   ContentTestimonial,
+  ContentVersion,
   SiteContent,
   SiteContentSnapshot,
   SiteSettings,
@@ -231,7 +239,7 @@ function ArticleForm({
   onCancel: () => void;
   onSave: (item: ContentArticle) => Promise<void>;
 }) {
-  const [item, setItem] = useState(initialItem);
+  const [item, setItem] = useDraftState(initialItem);
   const [slugEdited, setSlugEdited] = useState(Boolean(initialItem.slug));
 
   function update<K extends keyof ContentArticle>(
@@ -424,7 +432,7 @@ function PublicationForm({
   onCancel: () => void;
   onSave: (item: ContentPublication) => Promise<void>;
 }) {
-  const [item, setItem] = useState(initialItem);
+  const [item, setItem] = useDraftState(initialItem);
 
   function update<K extends keyof ContentPublication>(
     key: K,
@@ -601,6 +609,18 @@ export default function ContentAdmin({
   const [editor, setEditor] = useState<EditorState>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<Notice>(null);
+  const [historyOpen, setHistoryOpen] = useState(false);
+
+  useEffect(() => {
+    function warnBeforeLeaving(event: BeforeUnloadEvent) {
+      if (!hasUnsavedChanges()) return;
+      event.preventDefault();
+      event.returnValue = "";
+    }
+
+    window.addEventListener("beforeunload", warnBeforeLeaving);
+    return () => window.removeEventListener("beforeunload", warnBeforeLeaving);
+  }, []);
 
   const content = snapshot.content;
   const activeTab = TABS.find((entry) => entry.id === tab) ?? TABS[0];
@@ -632,6 +652,54 @@ export default function ContentAdmin({
         message: "Sua sessão pode ter expirado. Atualize a página e tente novamente.",
       });
       return false;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function closeEditor() {
+    if (
+      hasUnsavedChanges("drawer:") &&
+      !window.confirm("Descartar as alterações deste item sem publicar?")
+    ) {
+      return;
+    }
+    setEditor(null);
+  }
+
+  async function restoreVersion(version: ContentVersion) {
+    const savedAt = formatVersionDate(version.savedAt);
+    const warning = hasUnsavedChanges()
+      ? "\n\nAtenção: alterações ainda não publicadas nos formulários podem ser perdidas."
+      : "";
+    if (
+      !window.confirm(
+        `Restaurar a versão de ${savedAt}?${warning}\n\nA versão atual continua guardada no histórico.`,
+      )
+    ) {
+      return;
+    }
+
+    setBusy(true);
+    setNotice(null);
+    try {
+      const result = await restoreVersionAction({
+        id: version.id,
+        etag: snapshot.etag,
+      });
+      if (!result.ok) {
+        showNotice({ type: "error", message: result.message });
+        return;
+      }
+
+      setSnapshot(result.snapshot);
+      setHistoryOpen(false);
+      showNotice({ type: "success", message: result.message });
+    } catch {
+      showNotice({
+        type: "error",
+        message: "Sua sessão pode ter expirado. Atualize a página e tente novamente.",
+      });
     } finally {
       setBusy(false);
     }
@@ -756,14 +824,32 @@ export default function ContentAdmin({
             </h1>
             <p className="mt-1 break-all text-xs text-foreground/70">{email}</p>
           </div>
-          <div className="grid grid-cols-2 gap-2 sm:flex">
+          <div className="grid grid-cols-3 gap-2 sm:flex">
             <Button asChild variant="outline">
               <Link href="/" target="_blank">
                 Ver site
                 <ExternalLink />
               </Link>
             </Button>
-            <form action={logoutAction}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setHistoryOpen(true)}
+            >
+              <History />
+              Histórico
+            </Button>
+            <form
+              action={logoutAction}
+              onSubmit={(event) => {
+                if (
+                  hasUnsavedChanges() &&
+                  !window.confirm("Há alterações não publicadas. Sair mesmo assim?")
+                ) {
+                  event.preventDefault();
+                }
+              }}
+            >
               <Button type="submit" variant="ghost" className="w-full">
                 <LogOut />
                 Sair
@@ -1010,6 +1096,14 @@ export default function ContentAdmin({
         </div>
       )}
 
+      {historyOpen && (
+        <VersionHistory
+          busy={busy}
+          onClose={() => setHistoryOpen(false)}
+          onRestore={restoreVersion}
+        />
+      )}
+
       {editor && (
         <div
           className="fixed inset-0 z-[70] bg-heading/55 backdrop-blur-sm sm:p-5"
@@ -1029,7 +1123,7 @@ export default function ContentAdmin({
               </div>
               <button
                 type="button"
-                onClick={() => setEditor(null)}
+                onClick={closeEditor}
                 disabled={busy}
                 aria-label="Fechar editor"
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-green/15 bg-white text-heading"
@@ -1043,7 +1137,7 @@ export default function ContentAdmin({
                   key={editor.item.id}
                   initialItem={editor.item}
                   busy={busy}
-                  onCancel={() => setEditor(null)}
+                  onCancel={closeEditor}
                   onSave={saveArticle}
                 />
               )}
@@ -1052,7 +1146,7 @@ export default function ContentAdmin({
                   key={editor.item.id}
                   initialItem={editor.item}
                   busy={busy}
-                  onCancel={() => setEditor(null)}
+                  onCancel={closeEditor}
                   onSave={savePublication}
                 />
               )}
@@ -1061,7 +1155,7 @@ export default function ContentAdmin({
                   key={editor.item.id}
                   initialItem={editor.item}
                   busy={busy}
-                  onCancel={() => setEditor(null)}
+                  onCancel={closeEditor}
                   onSave={saveService}
                 />
               )}
@@ -1070,7 +1164,7 @@ export default function ContentAdmin({
                   key={editor.item.id}
                   initialItem={editor.item}
                   busy={busy}
-                  onCancel={() => setEditor(null)}
+                  onCancel={closeEditor}
                   onSave={saveTestimonial}
                 />
               )}

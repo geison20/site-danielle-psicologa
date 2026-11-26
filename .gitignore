@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# gerenciador de pacotes do projeto: yarn (a Vercel usa o yarn.lock)
+package-lock.json

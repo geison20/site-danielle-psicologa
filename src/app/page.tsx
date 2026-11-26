@@ -12,6 +12,7 @@ import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import Values from "@/components/Values";
 import Publications from "@/components/Publications";
 import Articles from "@/components/Articles";
+import { instagramUrl } from "@/lib/contact-links";
 import { getPublicSiteContent } from "@/lib/content-store";
 
 export const metadata: Metadata = {
@@ -52,7 +53,7 @@ export default async function Home() {
         <About about={about} contact={contact} />
         <Publications publications={publications} />
         <Articles articles={articles} />
-        <Instagram />
+        <Instagram profileUrl={instagramUrl(contact.instagram)} />
         <Testimonials testimonials={testimonials} />
         <Contact contact={contact} />
       </main>

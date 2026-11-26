@@ -110,6 +110,12 @@ export type SiteContent = {
   settings: SiteSettings;
 };
 
+export type ContentVersion = {
+  id: string;
+  savedAt: string;
+  changes: string[];
+};
+
 export type SiteContentSnapshot = {
   content: SiteContent;
   etag: string | null;

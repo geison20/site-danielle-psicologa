@@ -1,9 +1,9 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Lato, Montserrat } from "next/font/google";
+import CookieConsent, { ConsentAnalytics } from "@/components/CookieConsent";
 import StructuredData from "@/components/StructuredData";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -109,19 +109,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={siteConfig.language}>
-      <head>
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-      </head>
       <body className={`${montserrat.variable} ${lato.variable}`}>
         <StructuredData />
         {children}
-        <GoogleAnalytics
-          gaId="G-SS4V5MR9NE"
-          {...(process.env.NODE_ENV !== "production" ? { debug: true } : {})}
-        />
+        <ConsentAnalytics />
+        <CookieConsent />
         <Analytics />
       </body>
     </html>

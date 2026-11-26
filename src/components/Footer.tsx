@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Instagram, Mail, Phone } from "lucide-react";
 import { instagramLabel, instagramUrl, telLink } from "@/lib/contact-links";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import type { ContactContent } from "@/lib/content-types";
 
 const footerLinks = [
@@ -84,6 +85,15 @@ export default function Footer({ contact }: { contact: ContactContent }) {
         <div className="border-t border-white/10 py-6 pb-24 text-center text-xs leading-5 text-white/70 sm:pb-6">
           © {currentYear} Danielle Robertis de Vincenzo. Todos os direitos
           reservados.
+          <span className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <Link
+              href="/privacidade"
+              className="font-bold underline underline-offset-2 transition-colors hover:text-white"
+            >
+              Política de Privacidade
+            </Link>
+            <CookieSettingsButton className="font-bold underline underline-offset-2 transition-colors hover:text-white" />
+          </span>
         </div>
       </div>
     </div>
